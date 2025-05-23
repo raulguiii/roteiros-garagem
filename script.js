@@ -70,3 +70,38 @@ document.getElementById('ocorrenciaForm').addEventListener('submit', function(e)
   alert('Ocorrência enviada com sucesso!');
   modal.style.display = 'none';
 });
+
+// Botão de Atestado
+const atestadoButton = document.querySelector('#ana-rafael .btn-outline');
+const atestadoModal = document.getElementById('atestadoModal');
+const closeAtestadoButton = document.querySelector('.close-button-atestado');
+
+// Abre o modal ao clicar no botão Atestado
+atestadoButton.addEventListener('click', () => {
+  atestadoModal.style.display = 'block';
+});
+
+// Fecha o modal ao clicar no X
+closeAtestadoButton.addEventListener('click', () => {
+  atestadoModal.style.display = 'none';
+});
+
+// Fecha se clicar fora do conteúdo
+window.addEventListener('click', (event) => {
+  if (event.target == atestadoModal) {
+    atestadoModal.style.display = 'none';
+  }
+});
+
+// Ação do formulário de atestado (simples)
+document.getElementById('atestadoForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const fileInput = document.getElementById('fileUpload');
+  if (fileInput.files.length > 0) {
+    alert('Atestado enviado com sucesso!');
+    atestadoModal.style.display = 'none';
+    fileInput.value = '';
+  } else {
+    alert('Por favor, selecione um arquivo!');
+  }
+});
