@@ -15,3 +15,29 @@ document.addEventListener('click', function (event) {
     sidebar.classList.remove('active');
   }
 });
+
+// Função para alternar abas e conteúdo
+const navItems = document.querySelectorAll('.nav-item');
+const tabContents = document.querySelectorAll('.tab-content');
+
+navItems.forEach(item => {
+  item.addEventListener('click', () => {
+    // Remove a classe active dos itens do menu
+    navItems.forEach(i => i.classList.remove('active'));
+    // Adiciona active no item clicado
+    item.classList.add('active');
+
+    // Esconde todos os conteúdos
+    tabContents.forEach(tc => (tc.style.display = 'none'));
+
+    // Mostra o conteúdo correto
+    const tabToShow = item.getAttribute('data-tab');
+    document.getElementById(tabToShow).style.display = 'block';
+
+    // Opcional: Fecha a sidebar ao clicar em uma aba no mobile
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar.classList.contains('active')) {
+      sidebar.classList.remove('active');
+    }
+  });
+});
