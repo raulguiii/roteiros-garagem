@@ -28,15 +28,35 @@
         </div>
         <div class="nav-menu">
 
-        <!--Home-->
+        <!-- Home -->
         <div class="menu-heading">Home</div>
+
         <div class="nav-item active" data-tab="inicio">
             <i class="fa-solid fa-house"></i>
             <span>Início</span>
         </div>
-        <div class="nav-item" data-tab="admin">
+
+        <!-- Central de Controle com Collapse -->
+        <div class="nav-item collapse-toggle" onclick="toggleCollapse('controle-collapse')">
             <i class="fa-solid fa-sliders"></i>
             <span>Central de Controle</span>
+            <i class="fa-solid fa-chevron-down toggle-icon" style="margin-left:auto;"></i>
+        </div>
+
+        <!-- Submenus da Central de Controle -->
+        <div id="controle-collapse" class="collapse-content" style="display: none; padding-left: 20px;">
+            <div class="nav-item" data-tab="usuarios">
+                <i class="fa-solid fa-users"></i>
+                <span>Usuários</span>
+            </div>
+            <div class="nav-item" data-tab="ocorrencias">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <span>Ocorrências</span>
+            </div>
+            <div class="nav-item" data-tab="atestados">
+                <i class="fa-solid fa-file-medical"></i>
+                <span>Atestados</span>
+            </div>
         </div>
 
           <!--Roteiros APAE-->
@@ -170,104 +190,25 @@
         <p>Esta é a página inicial.</p>
     </div>
 
-    <!-- Página da central de controle -->
-    <div class="tab-content" id="admin" style="display: none;">
+
+    <!-- Página da central de controle - Ocorrências-->
+    <div class="tab-content" id="ocorrencias" style="display: none;">
         <div class="page-title">
-          <div class="title">CENTRAL DE CONTROLE - ROTEIROS</div>
-          <div class="action-buttons">
-            <button class="btn btn-primary">
-              <i class="fa-solid fa-plus"></i>
-              Novo comunicado
-            </button>
-          </div>
+          <div class="title">CENTRAL DE CONTROLE - OCORRÊNCIAS</div>
         </div>
-        <!-- Texto antes dos cards -->
-<div class="intro-text" style="margin-bottom: 25px; padding: 20px; background-color: #f9f9f9; border-left: 5px solid #ffcc00; border-radius: 6px;">
-  <p style="margin-bottom: 15px;">
-    👋 <strong>Bem-vindo à Central de Controle</strong><br>
-    Aqui você poderá controlar todo o sistema. Este local é de acesso exclusivo para administradores, é super secreto, não deixe ninguém mais ter acesso.
-  </p>
-  <p>
-    Logo abaixo, você encontra um resumo de todo o sistema, indicando a quantidade de alunos, escolas, motoristas e monitoras cadastrados.
-  </p>
-</div>
-
-        <!-- Stats Cards -->
-        <div class="stats-cards">
-          <div class="stat-card">
-            <div class="card-header">
-              <div>
-                <div class="card-value">42</div>
-                <div class="card-label">Total de escolas atendidas</div>
-              </div>
-              <div class="card-icon purple">
-                <i class="fa-solid fa-school"></i>
-              </div>
-            </div>
-            <div class="card-change positive">
-              <span>Contando todas escolas</span>
-            </div>
-          </div>
-
-          <div class="stat-card">
-            <div class="card-header">
-              <div>
-                <div class="card-value">197</div>
-                <div class="card-label">Total de alunos atendidos</div>
-              </div>
-              <div class="card-icon purple">
-                <i class="fas fa-users"></i>
-              </div>
-            </div>
-            <div class="card-change positive">
-              <span>Contando todos alunos</span>
-            </div>
-          </div>
-
-          <div class="stat-card">
-            <div class="card-header">
-              <div>
-                <div class="card-value">16</div>
-                <div class="card-label">Total de motoristas</div>
-              </div>
-              <div class="card-icon purple">
-                <i class="fa-solid fa-person"></i>
-              </div>
-            </div>
-            <div class="card-change positive">
-              <span>Motoristas contratados</span>
-            </div>
-          </div>
-
-          <div class="stat-card">
-            <div class="card-header">
-              <div>
-                <div class="card-value">15</div>
-                <div class="card-label">Total de monitoras</div>
-              </div>
-              <div class="card-icon purple">
-                <i class="fa-solid fa-person-dress"></i>
-              </div>
-            </div>
-            <div class="card-change positive">
-              <span>Monitoras contratadas</span>
-            </div>
-          </div>
-        </div>
-
 
         <!-- Texto após os cards -->
-  <div class="after-cards-text" style="margin: 30px 0 20px; padding: 20px; background-color: #eef6ff; border-left: 5px solid #3399ff; border-radius: 6px;">
-  <p style="margin-bottom: 15px;">
-    📋 <strong>Aqui você pode ver todas as ocorrências já registradas</strong><br>
-    A tabela está organizada por data, monitora, motorista, aluno, escola e descrição da ocorrência.
-  </p>
-  <p>
-    Todas as ocorrências criadas são exibidas nessa tabela para melhor controle e acompanhamento.
-  </p>
-</div>
+        <div class="after-cards-text" style="margin: 30px 0 20px; padding: 20px; background-color: #eef6ff; border-left: 5px solid #3399ff; border-radius: 6px;">
+        <p style="margin-bottom: 15px;">
+          📋 <strong>Aqui você pode ver todas as ocorrências já registradas</strong><br>
+          A tabela está organizada por data, monitora, motorista, aluno, escola e descrição da ocorrência.
+        </p>
+        <p>
+          Todas as ocorrências criadas são exibidas nessa tabela para melhor controle e acompanhamento.
+        </p>
+      </div>
 
-        <!-- Recent Orders -->
+      <!-- Tabela de ocorrências -->
         <div class="table-card">
         <div class="card-title">
             <h3><i class="fas fa-users"></i>Todas Ocorrências</h3>
@@ -311,7 +252,28 @@
       </tbody>
         </table>
         </div> 
+    </div>
+        
+        <!-- Página da central de controle - Atestados !-->
+        <div class="tab-content" id="usuarios" style="display: none;">
+        <div class="page-title">
+          <div class="title">CENTRAL DE CONTROLE - USUÁRIOS</div>
+          <div class="action-buttons">
+            <button class="btn btn-primary">
+              <i class="fa-solid fa-plus"></i>
+              Novo comunicado
+            </button>
+          </div>
+        </div>
+        </div>
 
+
+        <!-- Página da central de controle - Atestados !-->
+        <div class="tab-content" id="atestados" style="display: none;">
+        <div class="page-title">
+          <div class="title">CENTRAL DE CONTROLE - ATESTADOS</div>
+        </div>
+        
         <!-- Texto antes da tabela de atestados -->
         <div class="after-cards-text" style="margin: 30px 0 20px; padding: 20px; background-color: #f5faff; border-left: 5px solid #c72424; border-radius: 6px;">
           <p style="margin-bottom: 15px;">
@@ -322,7 +284,6 @@
             Todos os documentos enviados ficam registrados aqui para consulta e controle das ausências justificadas.
           </p>
         </div>
-
 
         <!-- Tabela de Atestados -->
       <div class="table-card" style="margin-top: 40px;">
@@ -356,8 +317,6 @@
           </tbody>
         </table>
       </div>
-
-
     </div>
 
     <!-- Ana e Rafael -->

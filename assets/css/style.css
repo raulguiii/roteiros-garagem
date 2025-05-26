@@ -1083,3 +1083,18 @@ input, textarea {
 #calendarioFrequencia div {
   min-height: 80px;
 }
+
+.collapse-content .nav-item {
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+.collapse-toggle {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.toggle-icon {
+    transition: transform 0.3s ease;
+}
