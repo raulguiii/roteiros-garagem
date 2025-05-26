@@ -589,8 +589,15 @@
     <span class="close-button-atestado">&times;</span>
     <h2>Enviar Atestado</h2>
     <form id="atestadoForm">
-      <label for="fileUpload">Selecione o arquivo (PNG ou JPG):</label><br><br>
+      <label for="aluno">Nome do Aluno:</label><br>
+      <input type="text" id="aluno" name="aluno" required><br><br>
+
+      <label for="monitora">Nome da Monitora:</label><br>
+      <input type="text" id="monitora" name="monitora" required><br><br>
+
+      <label for="fileUpload">Selecione o arquivo (PNG ou JPG):</label><br>
       <input type="file" id="fileUpload" name="fileUpload" accept=".png, .jpg, .jpeg" required><br><br>
+
       <button type="submit" class="btn btn-primary">Enviar</button>
     </form>
   </div>

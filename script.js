@@ -96,15 +96,32 @@ window.addEventListener('click', (event) => {
 // Ação do formulário de atestado (simples)
 document.getElementById('atestadoForm').addEventListener('submit', function(e) {
   e.preventDefault();
+
+  const aluno = document.getElementById('aluno').value.trim();
+  const monitora = document.getElementById('monitora').value.trim();
   const fileInput = document.getElementById('fileUpload');
-  if (fileInput.files.length > 0) {
-    alert('Atestado enviado com sucesso!');
-    atestadoModal.style.display = 'none';
-    fileInput.value = '';
-  } else {
-    alert('Por favor, selecione um arquivo!');
+
+  if (!aluno || !monitora) {
+    alert('Por favor, preencha os campos de aluno e monitora!');
+    return;
   }
+
+  if (fileInput.files.length === 0) {
+    alert('Por favor, selecione um arquivo!');
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append('aluno', aluno);
+  formData.append('monitora', monitora);
+  formData.append('file', fileInput.files[0]);
+
+  // Simula envio
+  alert(`Atestado enviado com sucesso!\nAluno: ${aluno}\nMonitora: ${monitora}`);
+  atestadoModal.style.display = 'none';
+  document.getElementById('atestadoForm').reset();
 });
+
 
 // MODAL DE OBSERVAÇÃO
 const observacaoButtons = document.querySelectorAll('.btn-observacao');
