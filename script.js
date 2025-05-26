@@ -191,3 +191,18 @@ function toggleUserMenu() {
       menu.style.display = 'none';
     }
   });
+
+function toggleNotifications() {
+    const dropdown = document.getElementById("notificationDropdown");
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+  }
+
+  // Fecha o dropdown ao clicar fora
+  document.addEventListener("click", function(event) {
+    const notification = document.querySelector(".notification");
+    const dropdown = document.getElementById("notificationDropdown");
+
+    if (!notification.contains(event.target)) {
+      dropdown.style.display = "none";
+    }
+  });

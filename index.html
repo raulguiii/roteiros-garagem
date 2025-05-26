@@ -128,10 +128,19 @@
         </div>
         <div></div>
         <div class="header-actions">
-          <div class="notification">
-            <i class="fas fa-bell"></i>
-            <div class="badge">3</div>
+          <div class="notification" onclick="toggleNotifications()">
+          <i class="fas fa-bell"></i>
+          <div class="badge">1092</div>
+          <div class="notification-dropdown" id="notificationDropdown">
+            <ul class="notification-list">
+              <li>
+                <strong>Novo Aluno</strong><br>
+                Pietro de Souza foi adicionado no roteiro da Ana<br>
+                <small>26/05/2025 às 14:19h</small>
+              </li>
+              </ul>
           </div>
+        </div>
           <div class="user-profile" onclick="toggleUserMenu()">
           <div class="profile-img">VJ</div>
           <div class="user-info">
