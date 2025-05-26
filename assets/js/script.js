@@ -206,3 +206,18 @@ function toggleNotifications() {
       dropdown.style.display = "none";
     }
   });
+
+  document.querySelector(".btn-primary").addEventListener("click", function () {
+  document.getElementById("comunicadoModal").style.display = "block";
+});
+
+document.querySelector(".close").addEventListener("click", function () {
+  document.getElementById("comunicadoModal").style.display = "none";
+});
+
+window.onclick = function(event) {
+  const modal = document.getElementById("comunicadoModal");
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+};
