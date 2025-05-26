@@ -435,20 +435,21 @@ body {
 }
 
 .card-icon.purple {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  background: linear-gradient(135deg, var(--warning), #af0202);
+}
+
+.card-icon.greenF {
+  background: linear-gradient(135deg, var(--warning), #3775c7);
 }
 
 .card-icon.blue {
-  background: linear-gradient(135deg, var(--info), #ff0202);
+  background: linear-gradient(135deg, var(--warning), #3607e2);
 }
 
 .card-icon.green {
-  background: linear-gradient(135deg, var(--success), #36d399);
+  background: linear-gradient(135deg, var(--success), #c4c11c);
 }
 
-.card-icon.orange {
-  background: linear-gradient(135deg, var(--warning), #ffbd59);
-}
 
 .card-value {
   font-size: 32px;
