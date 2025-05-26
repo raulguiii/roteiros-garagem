@@ -105,3 +105,58 @@ document.getElementById('atestadoForm').addEventListener('submit', function(e) {
     alert('Por favor, selecione um arquivo!');
   }
 });
+
+// MODAL DE OBSERVAÇÃO
+const observacaoButtons = document.querySelectorAll('.btn-observacao');
+const observacaoModal = document.getElementById('observacaoModal');
+const closeObservacaoButton = document.querySelector('.close-button-observacao');
+const listaObservacoes = document.getElementById('listaObservacoes');
+let observacoes = []; // Armazena as observações temporariamente
+
+// Abre o modal de observações
+observacaoButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    observacaoModal.style.display = 'block';
+    renderizarObservacoes();
+  });
+});
+
+// Fecha o modal
+closeObservacaoButton.addEventListener('click', () => {
+  observacaoModal.style.display = 'none';
+});
+
+// Fecha ao clicar fora do conteúdo
+window.addEventListener('click', (event) => {
+  if (event.target == observacaoModal) {
+    observacaoModal.style.display = 'none';
+  }
+});
+
+// Submissão do formulário de observação
+document.getElementById('observacaoForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const novaObs = document.getElementById('novaObservacao').value.trim();
+
+  if (novaObs) {
+    observacoes.push(novaObs);
+    document.getElementById('novaObservacao').value = '';
+    renderizarObservacoes();
+    alert('Observação adicionada com sucesso!');
+  }
+});
+
+// Renderiza as observações
+function renderizarObservacoes() {
+  listaObservacoes.innerHTML = '';
+  if (observacoes.length === 0) {
+    listaObservacoes.innerHTML = '<li>Nenhuma observação registrada.</li>';
+    return;
+  }
+
+  observacoes.forEach((obs, index) => {
+    const li = document.createElement('li');
+    li.textContent = `${index + 1}. ${obs}`;
+    listaObservacoes.appendChild(li);
+  });
+}

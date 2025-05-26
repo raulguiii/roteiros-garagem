@@ -237,7 +237,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="stats-cards">
           <div class="stat-card">
             <div class="card-header">
@@ -314,6 +314,7 @@
             <th>Endereço</th>
             <th>Responsável</th>
             <th>CID</th>
+            <th>Observações</th>
             <th>Ações</th>
             </tr>
         </thead>
@@ -325,6 +326,11 @@
             <td>Avenida Uberaba, 168 - Vila Virginia</td>
             <td>(11)99871-2024 - Fabiana</td>
             <td>Autista</td>
+            <td>
+              <button class="btn btn-outline btn-sm btn-observacao">
+                <i class="fa-solid fa-comment-dots"></i> Observações
+              </button>
+            </td>
             <td>
                   <button class="btn btn-outline btn-sm">
                     <i class="fa-solid fa-calendar-days"></i> Frequência
@@ -339,6 +345,11 @@
             <td>(11)98745-1230 - Marcelo</td>
             <td>Deficiência intelectual</td>
             <td>
+              <button class="btn btn-outline btn-sm btn-observacao">
+                <i class="fa-solid fa-comment-dots"></i> Observações
+              </button>
+            </td>
+            <td>
                   <button class="btn btn-outline btn-sm">
                     <i class="fa-solid fa-calendar-days"></i> Frequência
                   </button>
@@ -351,6 +362,11 @@
             <td>Travessa São João, 89 - Parque dos Pássaros</td>
             <td>(11)99812-3321 - Helena</td>
             <td>TDAH</td>
+            <td>
+              <button class="btn btn-outline btn-sm btn-observacao">
+                <i class="fa-solid fa-comment-dots"></i> Observações
+              </button>
+            </td>
             <td>
                   <button class="btn btn-outline btn-sm">
                     <i class="fa-solid fa-calendar-days"></i> Frequência
@@ -365,6 +381,11 @@
             <td>(11)99123-4455 - Ricardo</td>
             <td>Autismo leve</td>
             <td>
+              <button class="btn btn-outline btn-sm btn-observacao">
+                <i class="fa-solid fa-comment-dots"></i> Observações
+              </button>
+            </td>
+            <td>
                   <button class="btn btn-outline btn-sm">
                     <i class="fa-solid fa-calendar-days"></i> Frequência
                   </button>
@@ -377,6 +398,11 @@
             <td>Avenida Brasil, 500 - Vila Mariana</td>
             <td>(11)99645-7890 - Sílvia</td>
             <td>Dislexia</td>
+            <td>
+              <button class="btn btn-outline btn-sm btn-observacao">
+                <i class="fa-solid fa-comment-dots"></i> Observações
+              </button>
+            </td>
             <td>
                   <button class="btn btn-outline btn-sm">
                     <i class="fa-solid fa-calendar-days"></i> Frequência
@@ -518,6 +544,23 @@
     </form>
   </div>
 </div>
+
+<!-- Modal de Observações -->
+<div class="modal" id="observacaoModal">
+  <div class="modal-content">
+    <span class="close-button-observacao">&times;</span>
+    <h2>Adicionar Observação</h2>
+    <form id="observacaoForm">
+      <label>Nova observação:</label><br>
+      <textarea id="novaObservacao" rows="3" required></textarea><br>
+      <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+
+    <h3>Observações anteriores:</h3>
+    <ul id="listaObservacoes" style="max-height: 200px; overflow-y: auto; padding-left: 20px;"></ul>
+  </div>
+</div>
+
 <!-- Modal de Atestado -->
 <div id="atestadoModal" class="modal">
   <div class="modal-content">
