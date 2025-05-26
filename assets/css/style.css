@@ -1065,3 +1065,21 @@ input, textarea {
 .close-button:hover {
   color: black;
 }
+
+.close-button-frequencia,
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-button-frequencia:hover,
+.close-button:hover {
+  color: black;
+}
+
+#calendarioFrequencia div {
+  min-height: 80px;
+}
