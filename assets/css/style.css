@@ -996,12 +996,30 @@ input, textarea {
   color: black;
 }
 
-.close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 20px;
+.close-button-observacao,
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
   font-weight: bold;
-  color: #000;
   cursor: pointer;
+}
+
+.close-button-observacao:hover,
+.close-button:hover {
+  color: black;
+}
+
+.close-button-comunicado,
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-button-comunicado:hover,
+.close-button:hover {
+  color: black;
 }

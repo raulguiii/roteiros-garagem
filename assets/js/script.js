@@ -211,7 +211,7 @@ function toggleNotifications() {
   document.getElementById("comunicadoModal").style.display = "block";
 });
 
-document.querySelector(".close").addEventListener("click", function () {
+document.querySelector(".close-button-comunicado").addEventListener("click", function () {
   document.getElementById("comunicadoModal").style.display = "none";
 });
 
