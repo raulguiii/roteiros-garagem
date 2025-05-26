@@ -221,3 +221,103 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 };
+
+const modalAdicionar = document.getElementById("adicionarAlunoModal");
+  const btnAdicionar = document.querySelector(".btn-adicionar-primary");
+  const closeAdicionar = document.querySelector(".close-button-adicionar");
+
+  btnAdicionar.addEventListener("click", () => {
+    modalAdicionar.style.display = "block";
+  });
+
+  closeAdicionar.addEventListener("click", () => {
+    modalAdicionar.style.display = "none";
+  });
+
+  window.addEventListener("click", (event) => {
+    if (event.target == modalAdicionar) {
+      modalAdicionar.style.display = "none";
+    }
+  });
+
+
+  const modalRemover = document.getElementById("removerAlunoModal");
+  const btnRemover = document.querySelector(".btn-remover-outline");
+  const closeRemover = document.querySelector(".close-button-remover");
+  const btnApagar = document.getElementById("btnApagar");
+  const confirmarRemocao = document.getElementById("confirmarRemocao");
+  const formRemoverAluno = document.getElementById("formRemoverAluno");
+
+  // Abrir modal
+  btnRemover.addEventListener("click", () => {
+    modalRemover.style.display = "block";
+    confirmarRemocao.style.display = "none";
+  });
+
+  // Fechar modal
+  closeRemover.addEventListener("click", () => {
+    modalRemover.style.display = "none";
+  });
+
+  window.addEventListener("click", (event) => {
+    if (event.target == modalRemover) {
+      modalRemover.style.display = "none";
+    }
+  });
+
+  // Mostrar campo de confirmação
+  btnApagar.addEventListener("click", () => {
+    confirmarRemocao.style.display = "block";
+  });
+
+  // Lógica de confirmação
+  formRemoverAluno.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const nome = document.getElementById("nomeRemover").value.trim();
+    const confirmacao = document.getElementById("confirmarNome").value.trim();
+
+    if (nome && nome === confirmacao) {
+      alert(`Aluno "${nome}" removido com sucesso.`);
+      modalRemover.style.display = "none";
+      formRemoverAluno.reset();
+    } else {
+      alert("Os nomes não coincidem. Verifique e tente novamente.");
+    }
+  });
+
+const modalEditar = document.getElementById("editarAlunoModal");
+  const btnEditar = document.querySelector(".btn-editar-primary");
+  const closeEditar = document.querySelector(".close-button-editar");
+  const buscarEditar = document.getElementById("buscarEditar");
+  const camposEditar = document.getElementById("camposEditar");
+
+  // Abrir modal
+  btnEditar.addEventListener("click", () => {
+    modalEditar.style.display = "block";
+    camposEditar.style.display = "none";
+  });
+
+  // Fechar modal
+  closeEditar.addEventListener("click", () => {
+    modalEditar.style.display = "none";
+  });
+
+  window.addEventListener("click", (event) => {
+    if (event.target == modalEditar) {
+      modalEditar.style.display = "none";
+    }
+  });
+
+  // Mostrar campos ao clicar no ícone de busca
+  buscarEditar.addEventListener("click", () => {
+    camposEditar.style.display = "block";
+  });
+
+  // Enviar formulário (pode ser ajustado depois para enviar via AJAX/Flask)
+  document.getElementById("formEditarAluno").addEventListener("submit", function (e) {
+    e.preventDefault();
+    alert("Edições salvas com sucesso!");
+    modalEditar.style.display = "none";
+    this.reset();
+    camposEditar.style.display = "none";
+  });

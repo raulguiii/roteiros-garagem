@@ -1023,3 +1023,45 @@ input, textarea {
 .close-button:hover {
   color: black;
 }
+
+.close-button-adicionar,
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-button-adicionar:hover,
+.close-button:hover {
+  color: black;
+}
+
+.close-button-remover,
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-button-remover:hover,
+.close-button:hover {
+  color: black;
+}
+
+.close-button-editar,
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-button-editar:hover,
+.close-button:hover {
+  color: black;
+}

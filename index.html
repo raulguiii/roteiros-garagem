@@ -791,6 +791,92 @@
   </div>
 </div>
 
+<!-- Modal Adicionar Aluno -->
+<div id="adicionarAlunoModal" class="modal">
+  <div class="modal-content">
+    <span class="close-button-adicionar">&times;</span>
+    <h2>Adicionar Aluno</h2>
+    <form id="formAdicionarAluno">
+      <label for="escola">Escola do Aluno:</label><br>
+      <input type="text" id="escola" name="escola" required><br><br>
+
+      <label for="nomeAluno">Nome Completo do Aluno:</label><br>
+      <input type="text" id="nomeAluno" name="nomeAluno" required><br><br>
+
+      <label for="horario">Horário do Aluno:</label><br>
+      <input type="text" id="horario" name="horario" required><br><br>
+
+      <label for="endereco">Endereço do Aluno:</label><br>
+      <input type="text" id="endereco" name="endereco" required><br><br>
+
+      <label for="responsavel">Responsável (Nome e Celular):</label><br>
+      <input type="text" id="responsavel" name="responsavel" placeholder="Ex: Maria - (11) 91234-5678" required><br><br>
+
+      <label for="cid">CID:</label><br>
+      <input type="text" id="cid" name="cid" required><br><br>
+
+      <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+  </div>
+</div>
+
+<!-- Modal Remover Aluno -->
+<div id="removerAlunoModal" class="modal">
+  <div class="modal-content">
+    <span class="close-button-remover">&times;</span>
+    <h2>Remover Aluno</h2>
+    <form id="formRemoverAluno">
+      <label for="nomeRemover">Nome do Aluno:</label><br>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <input type="text" id="nomeRemover" name="nomeRemover" required style="flex: 1;">
+        <i class="fa-solid fa-magnifying-glass" style="cursor: pointer;"></i>
+      </div><br>
+
+      <button type="button" id="btnApagar" class="btn btn-remover-outline">Apagar</button>
+
+      <div id="confirmarRemocao" style="margin-top: 15px; display: none;">
+        <label for="confirmarNome">Digite novamente o nome para confirmar:</label><br>
+        <input type="text" id="confirmarNome" name="confirmarNome" required><br><br>
+        <button type="submit" class="btn btn-primary">Confirmar Remoção</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal Editar Aluno -->
+<div id="editarAlunoModal" class="modal">
+  <div class="modal-content">
+    <span class="close-button-editar">&times;</span>
+    <h2>Editar Aluno</h2>
+    <form id="formEditarAluno">
+      <label for="nomeEditar">Nome do Aluno:</label><br>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <input type="text" id="nomeEditar" name="nomeEditar" required style="flex: 1;">
+        <i class="fa-solid fa-magnifying-glass" id="buscarEditar" style="cursor: pointer;"></i>
+      </div><br>
+
+      <div id="camposEditar" style="display: none;">
+        <label for="escolaEditar">Escola:</label><br>
+        <input type="text" id="escolaEditar" name="escolaEditar"><br><br>
+
+        <label for="horarioEditar">Horário:</label><br>
+        <input type="text" id="horarioEditar" name="horarioEditar"><br><br>
+
+        <label for="enderecoEditar">Endereço:</label><br>
+        <input type="text" id="enderecoEditar" name="enderecoEditar"><br><br>
+
+        <label for="responsavelEditar">Responsável (Nome e Celular):</label><br>
+        <input type="text" id="responsavelEditar" name="responsavelEditar"><br><br>
+
+        <label for="cidEditar">CID:</label><br>
+        <input type="text" id="cidEditar" name="cidEditar"><br><br>
+
+        <button type="submit" class="btn btn-primary">Salvar Edições</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 
     <script src="assets/js/script.js"></script>
   </body>
