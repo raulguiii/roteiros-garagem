@@ -177,3 +177,17 @@ function renderizarObservacoes() {
     listaObservacoes.appendChild(li);
   });
 }
+
+function toggleUserMenu() {
+    const menu = document.getElementById('userMenu');
+    menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+  }
+
+  // Fecha o menu se clicar fora
+  document.addEventListener('click', function(event) {
+    const profile = document.querySelector('.user-profile');
+    const menu = document.getElementById('userMenu');
+    if (!profile.contains(event.target)) {
+      menu.style.display = 'none';
+    }
+  });

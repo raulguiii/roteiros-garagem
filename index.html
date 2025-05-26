@@ -132,13 +132,23 @@
             <i class="fas fa-bell"></i>
             <div class="badge">3</div>
           </div>
-          <div class="user-profile">
-            <div class="profile-img">VJ</div>
-            <div class="user-info">
-              <div class="user-name">Valter Junior</div>
-              <div class="user-role">Admin</div>
-            </div>
+          <div class="user-profile" onclick="toggleUserMenu()">
+          <div class="profile-img">VJ</div>
+          <div class="user-info">
+            <div class="user-name">Valter Junior</div>
+            <div class="user-role">Admin</div>
           </div>
+          <div class="user-menu" id="userMenu">
+            <ul>
+              <li>
+                <a href="/logout">
+                  <i class="fas fa-sign-out-alt"></i>
+                  <span>Sair</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
         </div>
       </div>
 
