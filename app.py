@@ -1,10 +1,12 @@
 import os
 import mysql.connector
 from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
-from datetime import datetime
+from datetime import datetime, timedelta
 from werkzeug.utils import secure_filename
+from flask import g
 
 app = Flask(__name__)
+app.permanent_session_lifetime = timedelta(hours=1)
 app.secret_key = "chave_secreta"
 
 UPLOAD_FOLDER = 'uploads/atestados'
@@ -18,6 +20,19 @@ db_config = {
     "password": "raulgui123!",
     "database": "db_transporte_adaptado"
 }
+
+@app.before_request
+def verificar_sessao():
+    # Rotas que não precisam de login
+    rotas_livres = ['login', 'static']  # adiciona static pra arquivos estáticos
+
+    if request.endpoint and any(request.endpoint.startswith(r) for r in rotas_livres):
+        return  # permite acesso sem sessão
+
+    # Se não tiver sessão de usuário, redireciona ao login com aviso
+    if 'nome_completo' not in session:
+        flash("Sua sessão expirou. Por favor, faça login novamente.")
+        return redirect(url_for('login'))
 
 # Página de login (rota inicial)
 @app.route('/', methods=['GET', 'POST'])
@@ -36,6 +51,7 @@ def login():
         conn.close()
 
         if usuario:
+            session.permanent = True
             session['id_usuario'] = usuario['id']  # <== aqui, salvar o id do usuário logado
             session['nome_completo'] = usuario['nome_completo']
             session['cargo'] = usuario['cargo']
