@@ -133,5 +133,19 @@ def salvar_comunicado():
         return jsonify({'success': False, 'message': str(e)}), 500
     
 
+@app.route('/api/comunicados', methods=['GET'])
+def listar_comunicados():
+    try:
+        conn = mysql.connector.connect(**db_config)
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("SELECT titulo, descricao, DATE_FORMAT(data_hora, '%d/%m/%Y às %H:%i') as data_hora_formatada FROM comunicados ORDER BY data_hora DESC LIMIT 10")
+        comunicados = cursor.fetchall()
+        cursor.close()
+        conn.close()
+        return jsonify({'success': True, 'comunicados': comunicados})
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
+
+
 if __name__ == '__main__':
     app.run(debug=True)

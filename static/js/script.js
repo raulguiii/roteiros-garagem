@@ -193,9 +193,14 @@ function toggleUserMenu() {
   });
 
 function toggleNotifications() {
-    const dropdown = document.getElementById("notificationDropdown");
-    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+  const dropdown = document.getElementById("notificationDropdown");
+  if (dropdown.style.display === "block") {
+    dropdown.style.display = "none";
+  } else {
+    carregarComunicados();
+    dropdown.style.display = "block";
   }
+}
 
   // Fecha o dropdown ao clicar fora
   document.addEventListener("click", function(event) {

@@ -105,3 +105,35 @@ document.getElementById("formComunicado").addEventListener("submit", function (e
     alert("Erro ao salvar comunicado.");
   });
 });
+
+
+function carregarComunicados() {
+  fetch('/api/comunicados')
+    .then(res => res.json())
+    .then(data => {
+      if(data.success) {
+        const ul = document.querySelector('.notification-list');
+        ul.innerHTML = ''; // limpa a lista antes
+
+        data.comunicados.forEach(c => {
+          const li = document.createElement('li');
+          li.innerHTML = `
+            <strong>${c.titulo}</strong><br>
+            ${c.descricao}<br>
+            <small>${c.data_hora_formatada}h</small>
+          `;
+          ul.appendChild(li);
+        });
+
+        // Atualiza badge com a quantidade de comunicados
+        const badge = document.querySelector('.notification .badge');
+        badge.textContent = data.comunicados.length;
+      }
+      else {
+        console.error('Erro ao carregar comunicados:', data.message);
+      }
+    })
+    .catch(err => {
+      console.error('Erro ao carregar comunicados:', err);
+    });
+}
