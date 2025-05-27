@@ -80,3 +80,61 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+
+// CRIAR NOVA OCORRENCIA
+// Seleciona o botão de ocorrência
+const ocorrenciaButton = document.querySelector('#ana-rafael .btn-primary');
+const modal = document.getElementById('ocorrenciaModal');
+const closeButton = document.querySelector('.close-button');
+
+// Abre o modal ao clicar no botão Ocorrência
+ocorrenciaButton.addEventListener('click', () => {
+  modal.style.display = 'block';
+});
+
+// Fecha o modal ao clicar no X
+closeButton.addEventListener('click', () => {
+  modal.style.display = 'none';
+});
+
+// Fecha o modal se clicar fora do conteúdo
+window.addEventListener('click', (event) => {
+  if (event.target == modal) {
+    modal.style.display = 'none';
+  }
+});
+
+document.getElementById('ocorrenciaForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  const data = {
+    data: new Date().toISOString().split('T')[0],  // data atual (yyyy-mm-dd)
+    monitora: document.getElementById('monitoraOcorrencia').value,
+    motorista: document.getElementById('motoristaOcorrencia').value,
+    aluno: document.getElementById('alunoOcorrencia').value,
+    escola: document.getElementById('escolaOcorrencia').value,
+    descricao: document.getElementById('descricaoOcorrencia').value
+  };
+
+  fetch('/api/ocorrencias', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  .then(res => res.json())
+  .then(response => {
+    if (response.success) {
+      alert('Ocorrência registrada com sucesso!');
+      modal.style.display = 'none';
+    } else {
+      alert('Erro: ' + response.message);
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    alert('Erro ao enviar a ocorrência.');
+  });
+});

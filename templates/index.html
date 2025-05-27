@@ -777,28 +777,29 @@
 </div>
       
     </div>
-    <div class="modal" id="ocorrenciaModal">
+  <!-- Modal de Ocorrências -->
+  <div class="modal" id="ocorrenciaModal">
   <div class="modal-content">
     <span class="close-button">&times;</span>
     <h2>Registrar Ocorrência</h2>
     <form id="ocorrenciaForm">
       <label>Data:</label>
-      <input type="date" required><br>
+      <input id="dataOcorrencia" type="date" required><br>
 
       <label>Monitora:</label>
-      <input type="text" required><br>
+      <input id="monitoraOcorrencia" type="text" required><br>
 
       <label>Motorista:</label>
-      <input type="text" required><br>
+      <input id="motoristaOcorrencia" type="text" required><br>
 
       <label>Aluno:</label>
-      <input type="text" required><br>
+      <input id="alunoOcorrencia" type="text" required><br>
 
       <label>Escola:</label>
-      <input type="text" required><br>
+      <input id="escolaOcorrencia" type="text" required><br>
 
       <label>Descrever Ocorrência:</label><br>
-      <textarea rows="4" required></textarea><br>
+      <textarea id="descricaoOcorrencia" rows="4" required></textarea><br>
 
       <button type="submit" class="btn btn-primary">Enviar</button>
     </form>

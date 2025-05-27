@@ -145,6 +145,35 @@ def listar_comunicados():
         return jsonify({'success': True, 'comunicados': comunicados})
     except Exception as e:
         return jsonify({'success': False, 'message': str(e)}), 500
+    
+    
+@app.route('/api/ocorrencias', methods=['POST'])
+def salvar_ocorrencia():
+    data = request.get_json()
+
+    data_ocorrencia = data.get('data')  # formato: '2025-05-27'
+    monitora = data.get('monitora')
+    motorista = data.get('motorista')
+    aluno = data.get('aluno')
+    escola = data.get('escola')
+    descricao = data.get('descricao')
+
+    if not data_ocorrencia or not descricao:
+        return jsonify({'success': False, 'message': 'Data e descrição são obrigatórias.'}), 400
+
+    try:
+        conn = mysql.connector.connect(**db_config)
+        cursor = conn.cursor()
+        cursor.execute("""
+            INSERT INTO ocorrencias (data, monitora, motorista, aluno, escola, descricao)
+            VALUES (%s, %s, %s, %s, %s, %s)
+        """, (data_ocorrencia, monitora, motorista, aluno, escola, descricao))
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return jsonify({'success': True})
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
 
 
 if __name__ == '__main__':

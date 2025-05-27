@@ -42,34 +42,6 @@ navItems.forEach(item => {
   });
 });
 
-// Seleciona o botão de ocorrência
-const ocorrenciaButton = document.querySelector('#ana-rafael .btn-primary');
-const modal = document.getElementById('ocorrenciaModal');
-const closeButton = document.querySelector('.close-button');
-
-// Abre o modal ao clicar no botão Ocorrência
-ocorrenciaButton.addEventListener('click', () => {
-  modal.style.display = 'block';
-});
-
-// Fecha o modal ao clicar no X
-closeButton.addEventListener('click', () => {
-  modal.style.display = 'none';
-});
-
-// Fecha o modal se clicar fora do conteúdo
-window.addEventListener('click', (event) => {
-  if (event.target == modal) {
-    modal.style.display = 'none';
-  }
-});
-
-// Ação do formulário (você pode adaptar para enviar os dados via backend depois)
-document.getElementById('ocorrenciaForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  alert('Ocorrência enviada com sucesso!');
-  modal.style.display = 'none';
-});
 
 // Botão de Atestado
 const atestadoButton = document.querySelector('#ana-rafael .btn-outline');
