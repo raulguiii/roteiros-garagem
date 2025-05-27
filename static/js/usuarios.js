@@ -71,3 +71,37 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+document.getElementById("formComunicado").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const titulo = document.getElementById("titulo").value.trim();
+  const descricao = document.getElementById("descricao").value.trim();
+  const dataHora = document.getElementById("dataHora").value;
+
+  fetch("/api/comunicado", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      titulo: titulo,
+      descricao: descricao,
+      dataHora: dataHora
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      alert("Comunicado salvo com sucesso!");
+      document.getElementById("formComunicado").reset();
+      document.getElementById("comunicadoModal").style.display = "none";
+      // aqui você pode atualizar uma lista de comunicados, se quiser exibir na mesma página
+    } else {
+      alert("Erro: " + data.message);
+    }
+  })
+  .catch(err => {
+    console.error("Erro ao salvar comunicado:", err);
+    alert("Erro ao salvar comunicado.");
+  });
+});

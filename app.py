@@ -1,6 +1,7 @@
 import os
 import mysql.connector
 from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = "chave_secreta"
@@ -105,6 +106,32 @@ def api_atestados():
     conn.close()
 
     return jsonify(atestados)
+
+
+@app.route('/api/comunicado', methods=['POST'])
+def salvar_comunicado():
+    data = request.get_json()
+    titulo = data.get('titulo')
+    descricao = data.get('descricao')
+    data_hora = data.get('dataHora')  # vem como string: '2025-05-27T14:00'
+
+    if not titulo or not descricao or not data_hora:
+        return jsonify({'success': False, 'message': 'Campos obrigatórios não preenchidos'}), 400
+
+    try:
+        conn = mysql.connector.connect(**db_config)
+        cursor = conn.cursor()
+        cursor.execute("""
+            INSERT INTO comunicados (titulo, descricao, data_hora)
+            VALUES (%s, %s, %s)
+        """, (titulo, descricao, data_hora.replace("T", " ")))
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return jsonify({'success': True})
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
+    
 
 if __name__ == '__main__':
     app.run(debug=True)
