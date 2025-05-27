@@ -276,12 +276,25 @@ body {
   right: 0;
   background-color: white;
   width: 350px;
-  max-height: 400px;
+  max-height: 180px; /* altura suficiente para 2 itens */
   overflow-y: auto;
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   z-index: 1000;
+}
+
+.notification-dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.notification-dropdown::-webkit-scrollbar-thumb {
+  background-color: rgba(67, 97, 238, 0.5);
+  border-radius: 10px;
+}
+
+.notification-dropdown::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(67, 97, 238, 0.8);
 }
 
 .notification-dropdown .dropdown-header {
