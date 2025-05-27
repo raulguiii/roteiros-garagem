@@ -1173,7 +1173,7 @@ input, textarea {
   border-bottom: none;
 }
 
-  select {
+select {
     width: 100%;
     padding: 10px 14px;
     border: 1px solid #ccc;
@@ -1197,3 +1197,21 @@ input, textarea {
     box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
     background-color: #fff;
   }
+
+
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.data-table {
+    width: 100%;
+    min-width: 600px; /* ou ajuste conforme a quantidade de colunas */
+    border-collapse: collapse;
+}
+
+.data-table th, .data-table td {
+    padding: 8px;
+    text-align: left;
+    white-space: nowrap; /* impede quebra de linha */
+}
