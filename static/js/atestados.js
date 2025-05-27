@@ -31,7 +31,7 @@ document.querySelector('[data-tab="atestados"]').addEventListener('click', () =>
 });
 
 // Botão de Atestado
-const atestadoButton = document.querySelector('#ana-rafael .btn-outline');
+const atestadoButton = document.querySelector('#ana-rafael .btn-outline-atestado');
 const atestadoModal = document.getElementById('atestadoModal');
 const closeAtestadoButton = document.querySelector('.close-button-atestado');
 
