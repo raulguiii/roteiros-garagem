@@ -55,17 +55,14 @@
             {% else %}
                 style="display: none; padding-left: 20px;"  
             {% endif %}>
-            <div class="nav-item" data-tab="usuarios">
-                <i class="fa-solid fa-users"></i>
-                <span>Usuários</span>
+            <div class="nav-item submenu-item" data-tab="usuarios">
+                <span>ㅤㅤㅤ- Usuários</span>
             </div>
-            <div class="nav-item" data-tab="ocorrencias">
-                <i class="fa-solid fa-triangle-exclamation"></i>
-                <span>Ocorrências</span>
+            <div class="nav-item submenu-item" data-tab="ocorrencias">
+                <span>ㅤㅤㅤ- Ocorrências</span>
             </div>
-            <div class="nav-item" data-tab="atestados">
-                <i class="fa-solid fa-heart-pulse"></i>
-                <span>Atestados</span>
+            <div class="nav-item submenu-item" data-tab="atestados">
+                <span>ㅤㅤㅤ- Atestados</span>
             </div>
         </div>
 
@@ -390,6 +387,7 @@
         <div class="page-title">
           <div class="title">ROTEIRO APAE - ANA E RAFAEL</div>
           <div class="action-buttons">
+            {% if cargo == 'Admin' %}
             <button class="btn btn-adicionar-primary">
               <i class="fa-solid fa-plus"></i>
               Adicionar Aluno
@@ -402,6 +400,7 @@
               <i class="fa-solid fa-pen-to-square"></i>
               Editar aluno
             </button>
+            {% elif cargo in ['Motorista', 'Monitora'] %}
             <button class="btn btn-outline">
               <i class="fa-solid fa-heart-pulse"></i>
               Atestado
@@ -410,6 +409,7 @@
               <i class="fa-solid fa-triangle-exclamation"></i>
               Ocorrência
             </button>
+             {% endif %}
           </div>
         </div>
 

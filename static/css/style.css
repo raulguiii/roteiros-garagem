@@ -1111,3 +1111,7 @@ input, textarea {
 .toggle-icon {
     transition: transform 0.3s ease;
 }
+
+.submenu-item span {
+    font-size: 14px; /* ou 14px, ou outro valor desejado */
+}
