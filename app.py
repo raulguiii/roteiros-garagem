@@ -2,9 +2,14 @@ import os
 import mysql.connector
 from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
 from datetime import datetime
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.secret_key = "chave_secreta"
+
+UPLOAD_FOLDER = 'uploads/atestados'
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+app.config['UPLOAD_FOLDER'] = os.path.join('static', 'atestados')
 
 # Configuração do banco de dados
 db_config = {
@@ -96,7 +101,7 @@ def api_ocorrencias():
 @app.route('/api/atestados')
 def api_atestados():
     if 'nome_completo' not in session or 'cargo' not in session:
-        return jsonify([])  # ou 401 Unauthorized, se preferir
+        return jsonify([])
 
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor(dictionary=True)
@@ -104,6 +109,10 @@ def api_atestados():
     atestados = cursor.fetchall()
     cursor.close()
     conn.close()
+
+    # Adiciona o caminho completo do arquivo para cada item
+    for atestado in atestados:
+        atestado['arquivo'] = url_for('static', filename=f'atestados/{atestado["arquivo"]}')
 
     return jsonify(atestados)
 
@@ -146,7 +155,7 @@ def listar_comunicados():
     except Exception as e:
         return jsonify({'success': False, 'message': str(e)}), 500
     
-    
+
 @app.route('/api/ocorrencias', methods=['POST'])
 def salvar_ocorrencia():
     data = request.get_json()
@@ -172,6 +181,39 @@ def salvar_ocorrencia():
         cursor.close()
         conn.close()
         return jsonify({'success': True})
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
+    
+
+@app.route('/api/atestados', methods=['POST'])
+def salvar_atestado():
+    if 'aluno' not in request.form or 'monitora' not in request.form or 'file' not in request.files:
+        return jsonify({'success': False, 'message': 'Todos os campos são obrigatórios.'}), 400
+
+    aluno = request.form['aluno'].strip()
+    monitora = request.form['monitora'].strip()
+    file = request.files['file']
+
+    if file.filename == '':
+        return jsonify({'success': False, 'message': 'Nenhum arquivo selecionado.'}), 400
+
+    try:
+        filename = secure_filename(file.filename)
+        caminho_completo = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(caminho_completo)
+
+        # Gravar no banco de dados
+        conn = mysql.connector.connect(**db_config)
+        cursor = conn.cursor()
+        cursor.execute("""
+            INSERT INTO atestados (aluno, monitora, arquivo)
+            VALUES (%s, %s, %s)
+        """, (aluno, monitora, filename))
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+        return jsonify({'success': True, 'message': 'Atestado salvo com sucesso!'})
     except Exception as e:
         return jsonify({'success': False, 'message': str(e)}), 500
 
