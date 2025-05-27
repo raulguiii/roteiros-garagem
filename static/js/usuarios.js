@@ -157,6 +157,7 @@ function toggleNotifications() {
 
 
 
+// MENSAGENS DIRETAS 
 function abrirMensagemDiretaModal() {
   document.getElementById("mensagemDiretaModal").style.display = "block";
 
@@ -166,6 +167,15 @@ function abrirMensagemDiretaModal() {
     .then(data => {
       const select = document.getElementById("usuarioDestino");
       select.innerHTML = "";
+
+      // Adiciona a opção padrão
+        const defaultOption = document.createElement("option");
+        defaultOption.value = "";
+        defaultOption.textContent = "Selecione um usuário";
+        defaultOption.disabled = true;
+        defaultOption.selected = true;
+        select.appendChild(defaultOption);
+
       data.usuarios.forEach(usuario => {
         const opt = document.createElement("option");
         opt.value = usuario.id;
@@ -245,4 +255,8 @@ window.addEventListener("click", function (e) {
   if (!icon.contains(e.target) && !dropdown.contains(e.target)) {
     dropdown.style.display = "none";
   }
+});
+
+document.querySelector(".close-button-direta").addEventListener("click", function () {
+  document.getElementById("mensagemDiretaModal").style.display = "none";
 });
