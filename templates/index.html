@@ -38,14 +38,23 @@
         </div>
 
         <!-- Central de Controle com Collapse -->
-        <div class="collapse-toggle" onclick="toggleCollapse('controle-collapse')">
+        <div class="collapse-toggle"
+            {% if cargo in ['Motorista', 'Monitora'] %}
+                style="display: none;"
+            {% endif %}
+            onclick="toggleCollapse('controle-collapse')">
           ㅤㅤ<i class="fa-solid fa-sliders"></i>
           <span>ㅤCentral de controle</span>
           <i class="fa-solid fa-chevron-down toggle-icon" style="margin-left:20px;"></i>
         </div>
 
         <!-- Submenus da Central de Controle -->
-        <div id="controle-collapse" class="collapse-content" style="display: none; padding-left: 20px;">
+        <div id="controle-collapse" class="collapse-content"
+            {% if cargo in ['Motorista', 'Monitora'] %}
+                style="display: none; padding-left: 20px;"
+            {% else %}
+                style="display: none; padding-left: 20px;"  
+            {% endif %}>
             <div class="nav-item" data-tab="usuarios">
                 <i class="fa-solid fa-users"></i>
                 <span>Usuários</span>
