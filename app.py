@@ -32,6 +32,8 @@ def login():
         if usuario:
             session['nome_completo'] = usuario['nome_completo']
             session['cargo'] = usuario['cargo']
+            session['roteiro'] = usuario['roteiro']
+            session['destino'] = usuario['destino']
             return redirect(url_for('index'))
         else:
             flash("CPF ou senha incorretos.")
@@ -45,9 +47,11 @@ def login():
 def index():
     if 'nome_completo' not in session or 'cargo' not in session:
         return redirect(url_for('login'))
-    return render_template('index.html', 
+    return render_template('index.html',
                            nome_completo=session['nome_completo'], 
-                           cargo=session['cargo'])
+                           cargo=session['cargo'],
+                           roteiro=session['roteiro'],
+                           destino=session['destino'])
 
 
 # Logout
