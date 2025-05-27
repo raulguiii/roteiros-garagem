@@ -137,3 +137,50 @@ function carregarComunicados() {
       console.error('Erro ao carregar comunicados:', err);
     });
 }
+
+function abrirMensagemDiretaModal() {
+  document.getElementById("mensagemDiretaModal").style.display = "block";
+
+  // Preenche os usuários
+  fetch('/api/usuarios')
+    .then(res => res.json())
+    .then(data => {
+      const select = document.getElementById("usuarioDestino");
+      select.innerHTML = "";
+      data.usuarios.forEach(usuario => {
+        const opt = document.createElement("option");
+        opt.value = usuario.id;
+        opt.textContent = usuario.nome_completo;
+        select.appendChild(opt);
+      });
+    });
+}
+
+document.getElementById("formMensagemDireta").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const titulo = document.getElementById("tituloDireta").value.trim();
+  const descricao = document.getElementById("descricaoDireta").value.trim();
+  const dataHora = document.getElementById("dataHoraDireta").value;
+  const usuarioDestino = document.getElementById("usuarioDestino").value;
+
+  fetch("/api/mensagem-direta", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ titulo, descricao, dataHora, usuarioDestino })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      alert("Mensagem direta enviada!");
+      document.getElementById("formMensagemDireta").reset();
+      document.getElementById("mensagemDiretaModal").style.display = "none";
+    } else {
+      alert("Erro: " + data.message);
+    }
+  })
+  .catch(err => {
+    console.error("Erro ao enviar mensagem direta:", err);
+    alert("Erro ao enviar mensagem direta.");
+  });
+});

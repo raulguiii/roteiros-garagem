@@ -229,6 +229,14 @@
               </ul>
           </div>
         </div>
+        <div id="mensagensDiretasWrapper" class="mensagens-wrapper">
+          <i class="fa-solid fa-envelope" id="iconeEnvelope" onclick="toggleMensagensDiretas()"></i>
+          <div id="mensagensDiretasDropdown" class="mensagens-dropdown" style="display: none;">
+            <h4>Mensagens Diretas</h4>
+            <ul id="listaMensagensDiretas"></ul>
+            <p id="semMensagens" style="display: none;">Nenhuma mensagem recebida.</p>
+          </div>
+        </div>
           <div class="user-profile" onclick="toggleUserMenu()">
           <div class="profile-img">
             {{ nome_completo.split()[0][0] }}{{ nome_completo.split()[-1][0] }}
@@ -267,6 +275,9 @@
         <div class="page-title">
           <div class="title">CENTRAL DE CONTROLE - USUÁRIOS</div>
           <div class="action-buttons">
+            <button class="btn btn-secondary" onclick="abrirMensagemDiretaModal()">
+              <i class="fa-solid fa-paper-plane"></i> Mensagem Direta
+            </button>
             <button class="btn btn-primary">
               <i class="fa-solid fa-plus"></i>
               Novo comunicado
@@ -967,6 +978,32 @@
     <button class="btn btn-primary" style="margin-top: 20px;">Salvar Frequência</button>
   </div>
 </div>
+
+
+<div id="mensagemDiretaModal" class="modal">
+  <div class="modal-content">
+    <span class="close-button-direta">&times;</span>
+    <h2>Nova Mensagem Direta</h2>
+    <form id="formMensagemDireta">
+      <label for="tituloDireta">Título:</label>
+      <input type="text" id="tituloDireta" name="titulo" required>
+
+      <label for="descricaoDireta">Descrição:</label>
+      <textarea id="descricaoDireta" name="descricao" rows="4" required></textarea>
+
+      <label for="dataHoraDireta">Data e Horário:</label>
+      <input type="datetime-local" id="dataHoraDireta" name="dataHora" required>
+
+      <label for="usuarioDestino">Selecionar Usuário:</label>
+      <select id="usuarioDestino" name="usuarioDestino" required>
+        <!-- opções serão preenchidas via JS -->
+      </select>
+
+      <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+  </div>
+</div>
+
 
     <script src="static/js/script.js"></script>
     <script src="static/js/usuarios.js"></script>
