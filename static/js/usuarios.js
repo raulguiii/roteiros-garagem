@@ -1,21 +1,3 @@
-// Novo Comunicado
-document.querySelector(".btn-primary").addEventListener("click", function () {
-  document.getElementById("comunicadoModal").style.display = "block";
-});
-
-document.querySelector(".close-button-comunicado").addEventListener("click", function () {
-  document.getElementById("comunicadoModal").style.display = "none";
-});
-
-window.onclick = function(event) {
-  const modal = document.getElementById("comunicadoModal");
-  if (event.target === modal) {
-    modal.style.display = "none";
-  }
-};
-
-
-
 //Carregar tabela Usuários
 document.addEventListener("DOMContentLoaded", function () {
   let usuariosCarregados = false;
@@ -71,6 +53,22 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+
+// Novo Comunicado
+document.querySelector(".btn-primary").addEventListener("click", function () {
+  document.getElementById("comunicadoModal").style.display = "block";
+});
+
+document.querySelector(".close-button-comunicado").addEventListener("click", function () {
+  document.getElementById("comunicadoModal").style.display = "none";
+});
+
+window.onclick = function(event) {
+  const modal = document.getElementById("comunicadoModal");
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+};
 document.getElementById("formComunicado").addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -105,8 +103,6 @@ document.getElementById("formComunicado").addEventListener("submit", function (e
     alert("Erro ao salvar comunicado.");
   });
 });
-
-
 function carregarComunicados() {
   fetch('/api/comunicados')
     .then(res => res.json())
@@ -137,6 +133,29 @@ function carregarComunicados() {
       console.error('Erro ao carregar comunicados:', err);
     });
 }
+
+function toggleNotifications() {
+  const dropdown = document.getElementById("notificationDropdown");
+  if (dropdown.style.display === "block") {
+    dropdown.style.display = "none";
+  } else {
+    carregarComunicados();
+    dropdown.style.display = "block";
+  }
+}
+
+  // Fecha o dropdown ao clicar fora
+  document.addEventListener("click", function(event) {
+    const notification = document.querySelector(".notification");
+    const dropdown = document.getElementById("notificationDropdown");
+
+    if (!notification.contains(event.target)) {
+      dropdown.style.display = "none";
+    }
+  });
+
+
+
 
 function abrirMensagemDiretaModal() {
   document.getElementById("mensagemDiretaModal").style.display = "block";
@@ -183,4 +202,47 @@ document.getElementById("formMensagemDireta").addEventListener("submit", functio
     console.error("Erro ao enviar mensagem direta:", err);
     alert("Erro ao enviar mensagem direta.");
   });
+});
+
+function toggleMensagensDiretas() {
+  const dropdown = document.getElementById("mensagensDiretasDropdown");
+  if (dropdown.style.display === "none") {
+    fetchMensagensDiretas();
+    dropdown.style.display = "block";
+  } else {
+    dropdown.style.display = "none";
+  }
+}
+
+function fetchMensagensDiretas() {
+  fetch('/api/mensagens-diretas')
+    .then(res => res.json())
+    .then(data => {
+      const lista = document.getElementById("listaMensagensDiretas");
+      const semMensagens = document.getElementById("semMensagens");
+      lista.innerHTML = "";
+
+      if (data.success && data.mensagens.length > 0) {
+        semMensagens.style.display = "none";
+        data.mensagens.forEach(msg => {
+          const li = document.createElement("li");
+          li.innerHTML = `<strong>${msg.titulo}</strong><br><small>${msg.data_hora_formatada}</small><br>${msg.descricao}`;
+          lista.appendChild(li);
+        });
+      } else {
+        semMensagens.style.display = "block";
+      }
+    })
+    .catch(err => {
+      console.error("Erro ao buscar mensagens diretas:", err);
+    });
+}
+
+// Fechar dropdown ao clicar fora
+window.addEventListener("click", function (e) {
+  const dropdown = document.getElementById("mensagensDiretasDropdown");
+  const icon = document.getElementById("iconeEnvelope");
+  if (!icon.contains(e.target) && !dropdown.contains(e.target)) {
+    dropdown.style.display = "none";
+  }
 });

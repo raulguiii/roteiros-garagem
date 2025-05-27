@@ -113,25 +113,6 @@ function toggleUserMenu() {
     }
   });
 
-function toggleNotifications() {
-  const dropdown = document.getElementById("notificationDropdown");
-  if (dropdown.style.display === "block") {
-    dropdown.style.display = "none";
-  } else {
-    carregarComunicados();
-    dropdown.style.display = "block";
-  }
-}
-
-  // Fecha o dropdown ao clicar fora
-  document.addEventListener("click", function(event) {
-    const notification = document.querySelector(".notification");
-    const dropdown = document.getElementById("notificationDropdown");
-
-    if (!notification.contains(event.target)) {
-      dropdown.style.display = "none";
-    }
-  });
 
 
 
@@ -295,45 +276,3 @@ function toggleCollapse(id) {
     content.style.display = isVisible ? "none" : "block";
 }
 
-function toggleMensagensDiretas() {
-  const dropdown = document.getElementById("mensagensDiretasDropdown");
-  if (dropdown.style.display === "none") {
-    fetchMensagensDiretas();
-    dropdown.style.display = "block";
-  } else {
-    dropdown.style.display = "none";
-  }
-}
-
-function fetchMensagensDiretas() {
-  fetch('/api/mensagens-diretas')
-    .then(res => res.json())
-    .then(data => {
-      const lista = document.getElementById("listaMensagensDiretas");
-      const semMensagens = document.getElementById("semMensagens");
-      lista.innerHTML = "";
-
-      if (data.success && data.mensagens.length > 0) {
-        semMensagens.style.display = "none";
-        data.mensagens.forEach(msg => {
-          const li = document.createElement("li");
-          li.innerHTML = `<strong>${msg.titulo}</strong><br><small>${msg.data_hora_formatada}</small><br>${msg.descricao}`;
-          lista.appendChild(li);
-        });
-      } else {
-        semMensagens.style.display = "block";
-      }
-    })
-    .catch(err => {
-      console.error("Erro ao buscar mensagens diretas:", err);
-    });
-}
-
-// Fechar dropdown ao clicar fora
-window.addEventListener("click", function (e) {
-  const dropdown = document.getElementById("mensagensDiretasDropdown");
-  const icon = document.getElementById("iconeEnvelope");
-  if (!icon.contains(e.target) && !dropdown.contains(e.target)) {
-    dropdown.style.display = "none";
-  }
-});
