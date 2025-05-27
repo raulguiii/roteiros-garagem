@@ -162,10 +162,12 @@
           </div>
         </div>
           <div class="user-profile" onclick="toggleUserMenu()">
-          <div class="profile-img">VJ</div>
+          <div class="profile-img">
+            {{ nome_completo.split()[0][0] }}{{ nome_completo.split()[-1][0] }}
+          </div>
           <div class="user-info">
-            <div class="user-name">Valter Junior</div>
-            <div class="user-role">Admin</div>
+            <div class="user-name">{{ nome_completo }}</div>
+            <div class="user-role">{{ cargo }}</div>
           </div>
           <div class="user-menu" id="userMenu">
             <ul>

@@ -30,7 +30,8 @@ def login():
         conn.close()
 
         if usuario:
-            session['usuario'] = usuario['nome_completo']
+            session['nome_completo'] = usuario['nome_completo']
+            session['cargo'] = usuario['cargo']
             return redirect(url_for('index'))
         else:
             flash("CPF ou senha incorretos.")
@@ -42,15 +43,17 @@ def login():
 # Página principal após login
 @app.route('/index')
 def index():
-    if 'usuario' not in session:
+    if 'nome_completo' not in session or 'cargo' not in session:
         return redirect(url_for('login'))
-    return render_template('index.html', usuario=session['usuario'])
+    return render_template('index.html', 
+                           nome_completo=session['nome_completo'], 
+                           cargo=session['cargo'])
 
 
 # Logout
 @app.route('/logout')
 def logout():
-    session.pop('usuario', None)
+    session.clear()
     return redirect(url_for('login'))
 
 

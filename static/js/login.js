@@ -13,5 +13,5 @@ const passwordAccess = (loginPass, loginEye) =>{
       iconEye.classList.toggle('ri-eye-off-fill')
    })
 }
-passwordAccess('password','loginPassword')
+passwordAccess('senha','loginsenha')
 
