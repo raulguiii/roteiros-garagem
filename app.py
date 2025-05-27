@@ -77,5 +77,34 @@ def api_usuarios():
     return jsonify({"usuarios": lista_usuarios})
 
 
+@app.route('/api/ocorrencias')
+def api_ocorrencias():
+    if 'nome_completo' not in session or 'cargo' not in session:
+        return {"error": "Não autorizado"}, 401
+
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM ocorrencias ORDER BY data DESC")
+    lista_ocorrencias = cursor.fetchall()
+    cursor.close()
+    conn.close()
+
+    return {"ocorrencias": lista_ocorrencias}
+
+
+@app.route('/api/atestados')
+def api_atestados():
+    if 'nome_completo' not in session or 'cargo' not in session:
+        return jsonify([])  # ou 401 Unauthorized, se preferir
+
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM atestados")
+    atestados = cursor.fetchall()
+    cursor.close()
+    conn.close()
+
+    return jsonify(atestados)
+
 if __name__ == '__main__':
     app.run(debug=True)

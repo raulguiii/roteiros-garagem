@@ -313,7 +313,7 @@
           <div class="title">CENTRAL DE CONTROLE - OCORRÊNCIAS</div>
         </div>
 
-        <!-- Texto após os cards -->
+        <!-- Texto antes dos cards -->
         <div class="after-cards-text" style="margin: 30px 0 20px; padding: 20px; background-color: #eef6ff; border-left: 5px solid #3399ff; border-radius: 6px;">
         <p style="margin-bottom: 15px;">
           📋 <strong>Aqui você pode ver todas as ocorrências já registradas</strong><br>
@@ -340,35 +340,13 @@
             <th>Ocorrência</th>
             </tr>
         </thead>
-        <tbody>
-        <tr>
-            <td>20/05/2025</td>
-            <td>Maria Silva</td>
-            <td>João Santos</td>
-            <td>Lucas Oliveira</td>
-            <td>Escola Municipal Centro</td>
-            <td>Sem ocorrências</td>
-        </tr>
-        <tr>
-            <td>28/05/2025</td>
-            <td>Ana Costa</td>
-            <td>Carlos Pereira</td>
-            <td>Beatriz Lima</td>
-            <td>Escola Estadual Nova</td>
-            <td>Atraso no embarque</td>
-        </tr>
-        <tr>
-            <td>31/05/2025</td>
-            <td>Pedro Almeida</td>
-            <td>Rafael Souza</td>
-            <td>Gabriel Fernandes</td>
-            <td>Escola Técnica São Paulo</td>
-            <td>Ocorrência médica</td>
-        </tr>
+        <tbody id="ocorrencias-tbody">
+            <!--java script-->
       </tbody>
         </table>
         </div> 
     </div>
+
 
         <!-- Página da central de controle - Atestados !-->
         <div class="tab-content" id="atestados" style="display: none;">
@@ -392,7 +370,7 @@
         <div class="card-title">
           <h3><i class="fa-solid fa-heart-pulse"></i>Atestados Apresentados</h3>
         </div>
-        <table class="data-table">
+         <table class="data-table" id="tabela-atestados">
           <thead>
             <tr>
               <th>Aluno</th>
@@ -401,21 +379,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Lucas Oliveira</td>
-              <td>Maria Silva</td>
-              <td><a href="arquivos/atestado_lucas.pdf" target="_blank">Visualizar</a></td>
-            </tr>
-            <tr>
-              <td>Beatriz Lima</td>
-              <td>Ana Costa</td>
-              <td><a href="arquivos/atestado_beatriz.pdf" target="_blank">Visualizar</a></td>
-            </tr>
-            <tr>
-              <td>Gabriel Fernandes</td>
-              <td>Pedro Almeida</td>
-              <td><a href="arquivos/atestado_gabriel.pdf" target="_blank">Visualizar</a></td>
-            </tr>
+              <!--java script-->
           </tbody>
         </table>
       </div>
@@ -1003,5 +967,7 @@
 
     <script src="static/js/script.js"></script>
     <script src="static/js/usuarios.js"></script>
+    <script src="static/js/ocorrencias.js"></script>
+    <script src="static/js/atestados.js"></script>
   </body>
 </html>
