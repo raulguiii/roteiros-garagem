@@ -1,6 +1,6 @@
 import os
 import mysql.connector
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
 
 app = Flask(__name__)
 app.secret_key = "chave_secreta"
@@ -59,6 +59,22 @@ def index():
 def logout():
     session.clear()
     return redirect(url_for('login'))
+
+
+# API que retorna os usuários em JSON (usada pelo AJAX)
+@app.route('/api/usuarios')
+def api_usuarios():
+    if 'nome_completo' not in session or 'cargo' not in session:
+        return jsonify({"erro": "Não autorizado"}), 401
+
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM usuarios")
+    lista_usuarios = cursor.fetchall()
+    cursor.close()
+    conn.close()
+
+    return jsonify({"usuarios": lista_usuarios})
 
 
 if __name__ == '__main__':
