@@ -44,7 +44,7 @@ def login():
             return redirect(url_for('index'))
         else:
             flash("CPF ou senha incorretos.")
-            return redirect(url_for('login'))
+            return render_template('login.html', erro=True)
 
     return render_template('login.html')
 

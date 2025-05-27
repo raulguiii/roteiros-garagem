@@ -351,3 +351,17 @@ img {
     transform: translate(0rem, 0rem);
   }
 }
+
+.login__erro {
+  background-color: #ffe0e0;
+  color: #b30000;
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.erro-input {
+  border: 2px solid #b30000 !important;
+}

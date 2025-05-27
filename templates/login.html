@@ -40,16 +40,19 @@
             <h1 class="login__title">Faça login com sua conta.</h1>
             
             <div class="login__area">
+               {% if erro %}
+                  <div class="login__erro">CPF ou senha incorretos.</div>
+               {% endif %}
                <form action="/" method="POST" class="login__form">
                   <div class="login__content grid">
                      <div class="login__box">
-                        <input type="text" id="cpf" name="cpf" required placeholder=" " class="login__input">
+                        <input type="text" id="cpf" name="cpf" required placeholder=" " class="login__input {% if erro %}erro-input{% endif %}">
                         <label for="cpf" class="login__label">CPF</label>
                         <i class="ri-mail-fill login__icon"></i>
                      </div>
          
                      <div class="login__box">
-                        <input type="password" id="senha" name="senha" required placeholder=" " class="login__input">
+                        <input type="password" id="senha" name="senha" required placeholder=" " class="login__input {% if erro %}erro-input{% endif %}">
                         <label for="senha" class="login__label">Senha</label>
                         <i class="ri-eye-off-fill login__icon login__password" id="loginsenha"></i>
                      </div>
