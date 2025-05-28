@@ -255,14 +255,43 @@ function fetchMensagensDiretas() {
 
       if (data.success && data.mensagens.length > 0) {
         semMensagens.style.display = "none";
+
         data.mensagens.forEach(msg => {
           const li = document.createElement("li");
           li.innerHTML = `
-            <i class="fa-solid fa-circle-check" style="cursor: pointer; margin-right: 5px;"></i>
+            <i class="fa-solid fa-circle-check" 
+               style="cursor: pointer; margin-right: 5px;" 
+               data-id="${msg.id}"></i>
             <strong>${msg.titulo}</strong><br>
             <small>${msg.data_hora_formatada}</small><br>
             ${msg.descricao}
           `;
+
+          // Evento para apagar direto, sem confirmação
+          const icon = li.querySelector("i");
+          icon.addEventListener("click", function () {
+            const mensagemId = this.getAttribute("data-id");
+
+            fetch(`/api/mensagem-direta/${mensagemId}`, {
+              method: "DELETE"
+            })
+            .then(res => res.json())
+            .then(data => {
+              if (data.success) {
+                li.remove();
+                if (lista.childElementCount === 0) {
+                  semMensagens.style.display = "block";
+                }
+              } else {
+                alert("Erro ao apagar: " + data.message);
+              }
+            })
+            .catch(err => {
+              console.error("Erro ao apagar mensagem direta:", err);
+              alert("Erro ao apagar mensagem.");
+            });
+          });
+
           lista.appendChild(li);
         });
       } else {
@@ -273,4 +302,3 @@ function fetchMensagensDiretas() {
       console.error("Erro ao buscar mensagens diretas:", err);
     });
 }
-

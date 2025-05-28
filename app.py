@@ -182,7 +182,7 @@ def api_mensagens_diretas():
         conn = mysql.connector.connect(**db_config)
         cursor = conn.cursor(dictionary=True)
         cursor.execute("""
-            SELECT titulo, descricao, 
+            SELECT id, titulo, descricao, 
                 DATE_FORMAT(data_hora, '%d/%m/%Y às %H:%i') as data_hora_formatada
             FROM mensagens_diretas
             WHERE id_usuario_destino = %s
@@ -197,8 +197,46 @@ def api_mensagens_diretas():
 
     except Exception as e:
         return jsonify({"success": False, "message": str(e)}), 500    
-
     
+
+@app.route('/api/mensagem-direta/<int:mensagem_id>', methods=['DELETE'])
+def deletar_mensagem_direta(mensagem_id):
+    if 'nome_completo' not in session or 'id_usuario' not in session:
+        return jsonify({'success': False, 'message': 'Não autorizado'}), 401
+
+    id_usuario_logado = session.get('id_usuario')
+
+    try:
+        conn = mysql.connector.connect(**db_config)
+        cursor = conn.cursor()
+
+        # Verifica se a mensagem pertence ao usuário logado
+        cursor.execute("""
+            SELECT id FROM mensagens_diretas
+            WHERE id = %s AND id_usuario_destino = %s
+        """, (mensagem_id, id_usuario_logado))
+        resultado = cursor.fetchone()
+
+        if not resultado:
+            cursor.close()
+            conn.close()
+            return jsonify({'success': False, 'message': 'Mensagem não encontrada ou não autorizada'}), 404
+
+        # Deleta a mensagem
+        cursor.execute("""
+            DELETE FROM mensagens_diretas
+            WHERE id = %s
+        """, (mensagem_id,))
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+        return jsonify({'success': True})
+
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
+
+
 
 @app.route('/api/atestados')
 def api_atestados():
