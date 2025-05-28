@@ -1230,6 +1230,28 @@ select {
   width: 95%;
 }
 
+/* Específico para modais com muitos campos */
+#removerAlunoModal .modal-content,
+#observacaoModal .modal-content {
+  max-width: 600px;
+  width: 95%;
+}
+
+/* Específico para modais com muitos campos */
+#ocorrenciaModal .modal-content,
+#atestadoModal .modal-content {
+  max-width: 600px;
+  width: 95%;
+}
+
+#comunicadoModal .modal-content,
+#mensagemDiretaModal .modal-content {
+  max-width: 600px;
+  width: 95%;
+}
+
+
+
 /* Responsividade para telas pequenas */
 @media screen and (max-width: 768px) {
   .modal-content {
