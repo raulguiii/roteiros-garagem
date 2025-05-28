@@ -114,7 +114,6 @@ function carregarComunicados() {
         data.comunicados.forEach(c => {
           const li = document.createElement('li');
           li.innerHTML = `
-            <i class="fa-solid fa-circle-check" style="cursor: pointer; margin-right: 5px;"></i>
             <strong>${c.titulo}</strong><br>
             ${c.descricao}<br>
             <small>${c.data_hora_formatada}h</small>

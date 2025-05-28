@@ -1,5 +1,3 @@
-banco:
-
 CREATE DATABASE db_transporte_adaptado; 
 USE db_transporte_adaptado;
 
@@ -82,6 +80,13 @@ CREATE TABLE comunicados (
     descricao TEXT NOT NULL,
     data_hora DATETIME NOT NULL
 );
+SET GLOBAL event_scheduler = ON;
+
+CREATE EVENT IF NOT EXISTS excluir_comunicados_antigos
+ON SCHEDULE EVERY 1 DAY
+DO
+  DELETE FROM comunicados WHERE data_hora < NOW() - INTERVAL 7 DAY;
+
 
 
 -- Tabela Ocorrências
