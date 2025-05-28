@@ -218,21 +218,20 @@
         <div class="header-actions">
           <div class="notification" onclick="toggleNotifications()">
           <i class="fas fa-bell"></i>
-          <div class="badge"></div>
           <div class="notification-dropdown" id="notificationDropdown">
             <ul class="notification-list">
               
               </ul>
           </div>
         </div>
-        <div id="mensagensDiretasWrapper" class="mensagens-wrapper">
-          <i class="fa-solid fa-envelope" id="iconeEnvelope" onclick="toggleMensagensDiretas()"></i>
-          <div class="badge"></div>
+        <div id="mensagensDiretasWrapper" class="mensagens" onclick="toggleMensagensDiretas()">
+          <i class="fa-solid fa-comment"></i>
           <div id="mensagensDiretasDropdown" class="mensagens-dropdown" style="display: none;">
-            <h4>Mensagens Diretas</h4>
-            <ul id="listaMensagensDiretas">
-
-            </ul>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <h4>Mensagens diretas</h4>
+              <span id="fecharMensagensDiretas" style="cursor: pointer;">&times;</span>
+            </div>
+            <ul id="listaMensagensDiretas"></ul>
             <p id="semMensagens" style="display: none;">Nenhuma mensagem recebida.</p>
           </div>
         </div>

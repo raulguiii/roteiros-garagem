@@ -107,13 +107,14 @@ function carregarComunicados() {
   fetch('/api/comunicados')
     .then(res => res.json())
     .then(data => {
-      if(data.success) {
+      if (data.success) {
         const ul = document.querySelector('.notification-list');
         ul.innerHTML = ''; // limpa a lista antes
 
         data.comunicados.forEach(c => {
           const li = document.createElement('li');
           li.innerHTML = `
+            <i class="fa-solid fa-circle-check" style="cursor: pointer; margin-right: 5px;"></i>
             <strong>${c.titulo}</strong><br>
             ${c.descricao}<br>
             <small>${c.data_hora_formatada}h</small>
@@ -124,8 +125,7 @@ function carregarComunicados() {
         // Atualiza badge com a quantidade de comunicados
         const badge = document.querySelector('.notification .badge');
         badge.textContent = data.comunicados.length;
-      }
-      else {
+      } else {
         console.error('Erro ao carregar comunicados:', data.message);
       }
     })
@@ -224,6 +224,27 @@ function toggleMensagensDiretas() {
   }
 }
 
+// Fechar ao clicar no X
+document.getElementById("fecharMensagensDiretas").addEventListener("click", function (e) {
+  e.stopPropagation(); // Impede que o clique no X acione o toggle
+  document.getElementById("mensagensDiretasDropdown").style.display = "none";
+});
+
+// Fecha o dropdown ao clicar fora
+document.addEventListener("click", function(event) {
+  const wrapper = document.getElementById("mensagensDiretasWrapper");
+  const dropdown = document.getElementById("mensagensDiretasDropdown");
+
+  if (!wrapper.contains(event.target)) {
+    dropdown.style.display = "none";
+  }
+});
+
+// Impede que clique interno no dropdown feche ele
+document.getElementById("mensagensDiretasDropdown").addEventListener("click", function(event) {
+  event.stopPropagation();
+});
+
 function fetchMensagensDiretas() {
   fetch('/api/mensagens-diretas')
     .then(res => res.json())
@@ -236,7 +257,12 @@ function fetchMensagensDiretas() {
         semMensagens.style.display = "none";
         data.mensagens.forEach(msg => {
           const li = document.createElement("li");
-          li.innerHTML = `<strong>${msg.titulo}</strong><br><small>${msg.data_hora_formatada}</small><br>${msg.descricao}`;
+          li.innerHTML = `
+            <i class="fa-solid fa-circle-check" style="cursor: pointer; margin-right: 5px;"></i>
+            <strong>${msg.titulo}</strong><br>
+            <small>${msg.data_hora_formatada}</small><br>
+            ${msg.descricao}
+          `;
           lista.appendChild(li);
         });
       } else {
@@ -248,15 +274,3 @@ function fetchMensagensDiretas() {
     });
 }
 
-// Fechar dropdown ao clicar fora
-window.addEventListener("click", function (e) {
-  const dropdown = document.getElementById("mensagensDiretasDropdown");
-  const icon = document.getElementById("iconeEnvelope");
-  if (!icon.contains(e.target) && !dropdown.contains(e.target)) {
-    dropdown.style.display = "none";
-  }
-});
-
-document.querySelector(".close-button-direta").addEventListener("click", function () {
-  document.getElementById("mensagemDiretaModal").style.display = "none";
-});
