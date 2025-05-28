@@ -1086,7 +1086,7 @@ input, textarea {
   color: black;
 }
 
-.close-button-direta,
+.close-button-mensagem-direta,
 .close-button {
   color: #aaa;
   float: right;
@@ -1095,7 +1095,7 @@ input, textarea {
   cursor: pointer;
 }
 
-.close-button-direta:hover,
+.close-button-mensagem-direta:hover,
 .close-button:hover {
   color: black;
 }

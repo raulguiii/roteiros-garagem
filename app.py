@@ -137,6 +137,21 @@ def listar_comunicados():
         return jsonify({'success': True, 'comunicados': comunicados})
     except Exception as e:
         return jsonify({'success': False, 'message': str(e)}), 500
+    
+@app.route('/api/comunicados/count')
+def contar_comunicados():
+    try:
+        conn = mysql.connector.connect(**db_config)
+        cursor = conn.cursor()
+        cursor.execute("SELECT COUNT(*) FROM comunicados")
+        (count,) = cursor.fetchone()
+        cursor.close()
+        conn.close()
+
+        return jsonify({'success': True, 'count': count})
+
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
 
 
 @app.route('/api/mensagem-direta', methods=['POST'])

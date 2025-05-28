@@ -153,6 +153,28 @@ function toggleNotifications() {
     }
   });
 
+function atualizarContadorNotificacoes() {
+  fetch('/api/comunicados/count')
+    .then(res => res.json())
+    .then(data => {
+      const contador = document.getElementById("contadorNotificacoes");
+      if (data.success && data.count > 0) {
+        contador.textContent = data.count;
+        contador.style.display = "inline-block";
+      } else {
+        contador.style.display = "none";
+      }
+    })
+    .catch(err => {
+      console.error("Erro ao buscar contador de notificações:", err);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  atualizarContadorMensagensDiretas();
+  atualizarContadorNotificacoes(); // <<< adiciona isso
+});
+
 
 
 
@@ -183,6 +205,10 @@ function abrirMensagemDiretaModal() {
       });
     });
 }
+
+document.querySelector(".close-button-mensagem-direta").addEventListener("click", function () {
+  document.getElementById("mensagemDiretaModal").style.display = "none";
+});
 
 document.getElementById("formMensagemDireta").addEventListener("submit", function (e) {
   e.preventDefault();
