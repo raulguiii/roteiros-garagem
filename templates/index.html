@@ -224,17 +224,34 @@
               </ul>
           </div>
         </div>
-        <div id="mensagensDiretasWrapper" class="mensagens" onclick="toggleMensagensDiretas()">
-          <i class="fa-solid fa-comment"></i>
-          <div id="mensagensDiretasDropdown" class="mensagens-dropdown" style="display: none;">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-              <h4>Mensagens diretas</h4>
-              <span id="fecharMensagensDiretas" style="cursor: pointer;">&times;</span>
+        <div id="mensagensDiretasWrapper" class="mensagens" onclick="toggleMensagensDiretas()" style="position: relative;">
+            <i class="fa-solid fa-comment"></i>
+            <span id="contadorMensagensDiretas" style="
+                display: none;
+                position: absolute;
+                top: -5px;
+                right: -5px;
+                background-color: red;
+                color: white;
+                font-size: 12px;
+                font-weight: bold;
+                padding: 2px 6px;
+                border-radius: 50%;
+                min-width: 20px;
+                text-align: center;
+                line-height: 16px;
+                pointer-events: none;
+              ">0</span>
+            
+            <div id="mensagensDiretasDropdown" class="mensagens-dropdown" style="display: none;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h4>Mensagens diretas</h4>
+                <span id="fecharMensagensDiretas" style="cursor: pointer;">&times;</span>
+              </div>
+              <ul id="listaMensagensDiretas"></ul>
+              <p id="semMensagens" style="display: none;">Nenhuma mensagem recebida.</p>
             </div>
-            <ul id="listaMensagensDiretas"></ul>
-            <p id="semMensagens" style="display: none;">Nenhuma mensagem recebida.</p>
           </div>
-        </div>
           <div class="user-profile" onclick="toggleUserMenu()">
           <div class="profile-img">
             {{ nome_completo.split()[0][0] }}{{ nome_completo.split()[-1][0] }}

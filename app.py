@@ -237,6 +237,29 @@ def deletar_mensagem_direta(mensagem_id):
         return jsonify({'success': False, 'message': str(e)}), 500
 
 
+@app.route('/api/mensagens-diretas/count')
+def contar_mensagens_diretas():
+    if 'id_usuario' not in session:
+        return jsonify({'success': False, 'message': 'Não autorizado'}), 401
+
+    id_usuario_logado = session['id_usuario']
+
+    try:
+        conn = mysql.connector.connect(**db_config)
+        cursor = conn.cursor()
+        cursor.execute("""
+            SELECT COUNT(*) FROM mensagens_diretas
+            WHERE id_usuario_destino = %s
+        """, (id_usuario_logado,))
+        (count,) = cursor.fetchone()
+        cursor.close()
+        conn.close()
+
+        return jsonify({'success': True, 'count': count})
+
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
+
 
 @app.route('/api/atestados')
 def api_atestados():

@@ -249,6 +249,9 @@ function fetchMensagensDiretas() {
   fetch('/api/mensagens-diretas')
     .then(res => res.json())
     .then(data => {
+      // Atualiza o contador ao buscar as mensagens
+      atualizarContadorMensagensDiretas();
+
       const lista = document.getElementById("listaMensagensDiretas");
       const semMensagens = document.getElementById("semMensagens");
       lista.innerHTML = "";
@@ -267,7 +270,6 @@ function fetchMensagensDiretas() {
             ${msg.descricao}
           `;
 
-          // Evento para apagar direto, sem confirmação
           const icon = li.querySelector("i");
           icon.addEventListener("click", function () {
             const mensagemId = this.getAttribute("data-id");
@@ -279,6 +281,9 @@ function fetchMensagensDiretas() {
             .then(data => {
               if (data.success) {
                 li.remove();
+                // Atualiza contador após deletar
+                atualizarContadorMensagensDiretas();
+
                 if (lista.childElementCount === 0) {
                   semMensagens.style.display = "block";
                 }
@@ -302,3 +307,25 @@ function fetchMensagensDiretas() {
       console.error("Erro ao buscar mensagens diretas:", err);
     });
 }
+
+
+function atualizarContadorMensagensDiretas() {
+  fetch('/api/mensagens-diretas/count')
+    .then(res => res.json())
+    .then(data => {
+      const contador = document.getElementById("contadorMensagensDiretas");
+      if (data.success && data.count > 0) {
+        contador.textContent = data.count;
+        contador.style.display = "inline-block";
+      } else {
+        contador.style.display = "none";
+      }
+    })
+    .catch(err => {
+      console.error("Erro ao buscar contador de mensagens diretas:", err);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  atualizarContadorMensagensDiretas();
+});
