@@ -1,3 +1,52 @@
+//              GET ROTEIRO 1 APAE
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelector('[data-tab="ana-rafael"]').addEventListener("click", function () {
+    // Mostrar conteúdo da aba
+    document.querySelectorAll(".tab-content").forEach(tab => tab.style.display = "none");
+    document.getElementById("ana-rafael").style.display = "block";
+
+    // Carregar alunos sempre que abrir a aba
+    carregarAlunosRoteiro1Apae();
+  });
+});
+
+function carregarAlunosRoteiro1Apae() {
+  fetch('/api/alunos_roteiro1apae')
+    .then(response => {
+      if (!response.ok) throw new Error("Erro ao carregar dados.");
+      return response.json();
+    })
+    .then(data => {
+      const tbody = document.getElementById("tabela-alunos-roteiro1apae-body");
+      tbody.innerHTML = ""; // Limpa a tabela antes de preencher
+
+      data.alunos.forEach(aluno => {
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+          <td>${aluno.escola}</td>
+          <td>${aluno.serie || ''}</td>
+          <td>${aluno.nome_completo}</td>
+          <td>${aluno.horario}</td>
+          <td>${aluno.endereco}</td>
+          <td>${aluno.responsavel}</td>
+          <td>${aluno.cid}</td>
+          <td>
+            <button class="btn btn-outline btn-sm btn-observacao" data-id="${aluno.id}">
+              <i class="fa-solid fa-comment-dots"></i> Observações
+            </button>
+          </td>
+        `;
+
+        tbody.appendChild(tr);
+      });
+    })
+    .catch(error => {
+      console.error("Erro ao carregar alunos:", error);
+      alert("Erro ao carregar alunos.");
+    });
+}
+
 let alunoSelecionadoId = null;
 
 // Abrir modal e carregar observações específicas
@@ -129,56 +178,6 @@ const modalAdicionar = document.getElementById("adicionarAlunoModal");
         alert("Erro: " + err.message);
       });
   });
-
-
-   document.addEventListener("DOMContentLoaded", function () {
-  document.querySelector('[data-tab="ana-rafael"]').addEventListener("click", function () {
-    // Mostrar conteúdo da aba
-    document.querySelectorAll(".tab-content").forEach(tab => tab.style.display = "none");
-    document.getElementById("ana-rafael").style.display = "block";
-
-    // Carregar alunos sempre que abrir a aba
-    carregarAlunosRoteiro1Apae();
-  });
-});
-
-function carregarAlunosRoteiro1Apae() {
-  fetch('/api/alunos_roteiro1apae')
-    .then(response => {
-      if (!response.ok) throw new Error("Erro ao carregar dados.");
-      return response.json();
-    })
-    .then(data => {
-      const tbody = document.getElementById("tabela-alunos-roteiro1apae-body");
-      tbody.innerHTML = ""; // Limpa a tabela antes de preencher
-
-      data.alunos.forEach(aluno => {
-        const tr = document.createElement("tr");
-
-        tr.innerHTML = `
-          <td>${aluno.escola}</td>
-          <td>${aluno.serie || ''}</td>
-          <td>${aluno.nome_completo}</td>
-          <td>${aluno.horario}</td>
-          <td>${aluno.endereco}</td>
-          <td>${aluno.responsavel}</td>
-          <td>${aluno.cid}</td>
-          <td>
-            <button class="btn btn-outline btn-sm btn-observacao" data-id="${aluno.id}">
-              <i class="fa-solid fa-comment-dots"></i> Observações
-            </button>
-          </td>
-        `;
-
-        tbody.appendChild(tr);
-      });
-    })
-    .catch(error => {
-      console.error("Erro ao carregar alunos:", error);
-      alert("Erro ao carregar alunos.");
-    });
-}
-
 
 
                         //  REMOVER ALUNO 

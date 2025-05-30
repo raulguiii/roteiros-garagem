@@ -514,6 +514,10 @@
               <i class="fa-solid fa-triangle-exclamation"></i>
               Ocorrência
             </button>
+            <button class="btn btn-frequencia-outline">
+              <i class="fa-solid fa-calendar-days"></i>
+              Preencher Frequência
+            </button>
              {% endif %}
           </div>
         </div>
@@ -989,24 +993,6 @@
         <button type="submit" class="btn btn-primary">Salvar Edições</button>
       </div>
     </form>
-  </div>
-</div>
-
-<!-- Modal de Frequência -->
-<div class="modal" id="frequenciaModal">
-  <div class="modal-content" style="width: 90%; max-width: 800px;">
-    <span class="close-button-frequencia">&times;</span>
-    <h2>Frequência do Aluno</h2>
-
-    <div style="margin-bottom: 20px;">
-      <label for="mesAno">Selecione o mês:</label>
-      <input type="month" id="mesAno" name="mesAno" value="2025-05">
-      <button id="gerarCalendario" class="btn btn-primary btn-sm">Gerar</button>
-    </div>
-
-    <div id="calendarioFrequencia" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px;"></div>
-
-    <button class="btn btn-primary" style="margin-top: 20px;">Salvar Frequência</button>
   </div>
 </div>
 

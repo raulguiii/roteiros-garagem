@@ -795,6 +795,30 @@ body {
   box-shadow: 0 6px 15px rgba(58, 12, 163, 0.2);
 }
 
+.btn-frequencia-outline {
+  border: 2px solid var(--primary-light);
+  color: var(--primary);
+  background-color: transparent;
+}
+.btn-frequencia-outline:hover {
+  background-color: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(58, 12, 163, 0.2);
+}
+.btn-outline-atestado {
+  border: 2px solid var(--primary-light);
+  color: var(--primary);
+  background-color: transparent;
+}
+.btn-outline-atestado:hover {
+  background-color: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(58, 12, 163, 0.2);
+}
 .btn-outline {
   border: 2px solid var(--primary-light);
   color: var(--primary);
@@ -1072,19 +1096,6 @@ input, textarea {
   color: black;
 }
 
-.close-button-frequencia,
-.close-button {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.close-button-frequencia:hover,
-.close-button:hover {
-  color: black;
-}
 
 .close-button-mensagem-direta,
 .close-button {
@@ -1100,9 +1111,7 @@ input, textarea {
   color: black;
 }
 
-#calendarioFrequencia div {
-  min-height: 80px;
-}
+
 
 .collapse-content .nav-item {
     padding-left: 10px;

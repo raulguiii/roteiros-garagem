@@ -42,9 +42,6 @@ navItems.forEach(item => {
   });
 });
 
-
-
-
 function toggleUserMenu() {
     const menu = document.getElementById('userMenu');
     menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
@@ -58,63 +55,6 @@ function toggleUserMenu() {
       menu.style.display = 'none';
     }
   });
-
-
-
-
-document.addEventListener('DOMContentLoaded', function () {
-  const modalFrequencia = document.getElementById('frequenciaModal');
-  const closeFrequencia = document.querySelector('.close-button-frequencia');
-
-  document.querySelectorAll('.btn-frequencia').forEach(botao => {
-    botao.addEventListener('click', () => {
-      modalFrequencia.style.display = 'block';
-    });
-  });
-
-  closeFrequencia.addEventListener('click', () => {
-    modalFrequencia.style.display = 'none';
-  });
-
-  window.addEventListener('click', function (event) {
-    if (event.target === modalFrequencia) {
-      modalFrequencia.style.display = 'none';
-    }
-  });
-
-  // Geração do calendário
-  document.getElementById('gerarCalendario').addEventListener('click', () => {
-    const calendario = document.getElementById('calendarioFrequencia');
-    calendario.innerHTML = ''; // Limpa o calendário anterior
-
-    const mesAno = document.getElementById('mesAno').value;
-    if (!mesAno) return;
-
-    const [ano, mes] = mesAno.split('-').map(Number);
-    const diasNoMes = new Date(ano, mes, 0).getDate();
-    const primeiroDiaSemana = new Date(ano, mes - 1, 1).getDay(); // 0 = domingo
-
-    // Preenche espaço vazio antes do primeiro dia
-    for (let i = 0; i < primeiroDiaSemana; i++) {
-      const vazio = document.createElement('div');
-      calendario.appendChild(vazio);
-    }
-
-    // Cria os dias do mês
-    for (let dia = 1; dia <= diasNoMes; dia++) {
-      const divDia = document.createElement('div');
-      divDia.style.border = '1px solid #ccc';
-      divDia.style.padding = '5px';
-      divDia.style.borderRadius = '6px';
-      divDia.style.background = '#f9f9f9';
-      divDia.innerHTML = `
-        <strong>${dia}</strong><br>
-        <textarea placeholder="Frequência..." rows="2" style="width: 100%; resize: none;"></textarea>
-      `;
-      calendario.appendChild(divDia);
-    }
-  });
-});
 
 function toggleCollapse(id) {
     const content = document.getElementById(id);
