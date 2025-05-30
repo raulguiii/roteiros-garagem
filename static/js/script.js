@@ -62,51 +62,6 @@ function toggleUserMenu() {
 
 
 
-
-  const modalRemover = document.getElementById("removerAlunoModal");
-  const btnRemover = document.querySelector(".btn-remover-outline");
-  const closeRemover = document.querySelector(".close-button-remover");
-  const btnApagar = document.getElementById("btnApagar");
-  const confirmarRemocao = document.getElementById("confirmarRemocao");
-  const formRemoverAluno = document.getElementById("formRemoverAluno");
-
-  // Abrir modal
-  btnRemover.addEventListener("click", () => {
-    modalRemover.style.display = "block";
-    confirmarRemocao.style.display = "none";
-  });
-
-  // Fechar modal
-  closeRemover.addEventListener("click", () => {
-    modalRemover.style.display = "none";
-  });
-
-  window.addEventListener("click", (event) => {
-    if (event.target == modalRemover) {
-      modalRemover.style.display = "none";
-    }
-  });
-
-  // Mostrar campo de confirmação
-  btnApagar.addEventListener("click", () => {
-    confirmarRemocao.style.display = "block";
-  });
-
-  // Lógica de confirmação
-  formRemoverAluno.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const nome = document.getElementById("nomeRemover").value.trim();
-    const confirmacao = document.getElementById("confirmarNome").value.trim();
-
-    if (nome && nome === confirmacao) {
-      alert(`Aluno "${nome}" removido com sucesso.`);
-      modalRemover.style.display = "none";
-      formRemoverAluno.reset();
-    } else {
-      alert("Os nomes não coincidem. Verifique e tente novamente.");
-    }
-  });
-
 const modalEditar = document.getElementById("editarAlunoModal");
   const btnEditar = document.querySelector(".btn-editar-primary");
   const closeEditar = document.querySelector(".close-button-editar");

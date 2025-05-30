@@ -416,6 +416,38 @@ def adicionar_aluno_roteiro1apae():
 
     return jsonify({"status": "aluno_adicionado"}), 201
 
+#                                           DELETE ALUNO ROTEIRO 1 APAE
+@app.route('/api/alunos_roteiro1apae/<nome_completo>', methods=['DELETE'])
+def remover_aluno_roteiro1apae(nome_completo):
+    if 'nome_completo' not in session or 'cargo' not in session:
+        return jsonify({"erro": "Não autorizado"}), 401
+
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+
+    # Verificar se existe
+    cursor.execute("SELECT id FROM alunos_roteiro1apae WHERE nome_completo = %s", (nome_completo,))
+    aluno = cursor.fetchone()
+
+    if not aluno:
+        cursor.close()
+        conn.close()
+        return jsonify({"erro": "Aluno não encontrado"}), 404
+
+    aluno_id = aluno[0]
+
+    # Apagar observações relacionadas
+    cursor.execute("DELETE FROM observacoes_alunos_roteiro1apae WHERE aluno_id = %s", (aluno_id,))
+
+    # Apagar o aluno
+    cursor.execute("DELETE FROM alunos_roteiro1apae WHERE id = %s", (aluno_id,))
+
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    return jsonify({"status": "aluno_removido"})
+
 #                                              GET OBSERVACOES ROTEIRO 1 APAE
 @app.route('/api/observacoes/<int:aluno_id>')
 def get_observacoes(aluno_id):
