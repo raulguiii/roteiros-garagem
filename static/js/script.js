@@ -84,11 +84,46 @@ window.addEventListener('click', (e) => {
   }
 });
 
-// Evento de Salvar
-document.getElementById('frequenciaForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  alert('Frequência salva com sucesso!');
-  frequenciaModal.style.display = 'none';
+
+document.addEventListener('DOMContentLoaded', () => {
+  const tabelaBody = document.querySelector('.frequencia-table tbody');
+
+  fetch('/api/alunos_roteiro1apae')
+    .then(response => response.json())
+    .then(data => {
+      const alunos = data.alunos;
+
+      alunos.forEach(aluno => {
+        const tr = document.createElement('tr');
+
+        // Coluna nome do aluno
+        const tdNome = document.createElement('td');
+        tdNome.textContent = aluno.nome_completo;
+        tr.appendChild(tdNome);
+
+        // Gerar selects para cada dia
+        const dias = ['5/5','6/5','7/5','8/5','9/5','12/5','13/5','14/5','15/5','16/5'];
+        dias.forEach(() => {
+          const td = document.createElement('td');
+          const select = document.createElement('select');
+
+          ['PF','PP','FF','FP','A','SA'].forEach(opt => {
+            const option = document.createElement('option');
+            option.value = opt;
+            option.text = opt;
+            select.appendChild(option);
+          });
+
+          td.appendChild(select);
+          tr.appendChild(td);
+        });
+
+        tabelaBody.appendChild(tr);
+      });
+    })
+    .catch(err => {
+      console.error('Erro ao carregar alunos:', err);
+    });
 });
 
 
