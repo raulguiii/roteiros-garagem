@@ -107,6 +107,13 @@ document.addEventListener('DOMContentLoaded', () => {
           const td = document.createElement('td');
           const select = document.createElement('select');
 
+          // opção vazia para não selecionar nada inicialmente
+          const optionVazia = document.createElement('option');
+          optionVazia.value = '';
+          optionVazia.text = '';  // pode ser vazio ou "Selecione"
+          optionVazia.selected = true;
+          select.appendChild(optionVazia);
+
           ['PF','PP','FF','FP','A','SA'].forEach(opt => {
             const option = document.createElement('option');
             option.value = opt;
