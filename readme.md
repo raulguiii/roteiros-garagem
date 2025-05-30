@@ -3,7 +3,7 @@ USE db_transporte_adaptado;
 
 -- TABLE USUÁRIOS
 select * from usuarios;
-
+drop tables usuarios;
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome_completo VARCHAR(255) NOT NULL,
@@ -15,6 +15,9 @@ CREATE TABLE usuarios (
     cpf VARCHAR(50) UNIQUE NOT NULL
 );
 
+DELETE FROM usuarios WHERE id = 1;
+
+
 -- Admin
 INSERT INTO usuarios (
 nome_completo, 
@@ -24,7 +27,7 @@ roteiro,
 destino, 
 celular, 
 cpf) 
-VALUES ('Raul Guilherme', 'senha123', 'Admin', 'Admin', 'Admin','11915551648', '48816520876');
+VALUES ('Raul Guilherme', 'senha123', 'Chefe de Departamento', 'Admin', 'Admin','11958730179', '123456');
 
 -- Monitora/Motorista APAE
 INSERT INTO usuarios (
@@ -73,7 +76,7 @@ VALUES ('Priscilla Bressiane', 'pri123', 'Monitora','roteiro1pref', 'RoteirosPre
 
 -- TABLE Comunicados
 select * from comunicados;
-
+drop tables comunicados;
 CREATE TABLE comunicados (
     id INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(255) NOT NULL,
@@ -134,4 +137,28 @@ CREATE TABLE mensagens_diretas (
 );
 
 
+
+-- Roteiros 
+CREATE TABLE alunos_roteiro1apae (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    escola VARCHAR(100),
+    serie VARCHAR(20),
+    nome_completo VARCHAR(150),
+    horario VARCHAR(50),
+    endereco VARCHAR(200),
+    responsavel VARCHAR(150),
+    cid VARCHAR(100)
+);
+
+INSERT INTO alunos_roteiro1apae 
+(escola, serie, nome_completo, horario, endereco, responsavel, cid) 
+VALUES 
+('APAE', '2º Ano', 'Rafael Costa Oliveira', '13:00 - 17:00', 'Travessa São José, 321', 'Patrícia Oliveira', 'F81.9');
+
+
+CREATE TABLE observacoes_alunos_roteiro1apae (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    aluno_id INT NOT NULL,
+    observacao TEXT NOT NULL
+);
 

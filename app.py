@@ -390,7 +390,7 @@ def api_alunos_roteiro1apae():
 def get_observacoes(aluno_id):
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT observacao FROM observacoes_alunos WHERE aluno_id = %s ORDER BY id DESC", (aluno_id,))
+    cursor.execute("SELECT observacao FROM observacoes_alunos_roteiro1apae WHERE aluno_id = %s ORDER BY id DESC", (aluno_id,))
     observacoes = cursor.fetchall()
     cursor.close()
     conn.close()
@@ -408,7 +408,7 @@ def post_observacao():
 
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO observacoes_alunos (aluno_id, observacao) VALUES (%s, %s)", (aluno_id, observacao))
+    cursor.execute("INSERT INTO observacoes_alunos_roteiro1apae (aluno_id, observacao) VALUES (%s, %s)", (aluno_id, observacao))
     conn.commit()
     cursor.close()
     conn.close()
