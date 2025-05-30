@@ -369,6 +369,53 @@ def salvar_ocorrencia():
         return jsonify({'success': True})
     except Exception as e:
         return jsonify({'success': False, 'message': str(e)}), 500
+    
+
+@app.route('/api/alunos_roteiro1apae')
+def api_alunos_roteiro1apae():
+    if 'nome_completo' not in session or 'cargo' not in session:
+        return jsonify({"erro": "Não autorizado"}), 401
+
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM alunos_roteiro1apae")
+    alunos = cursor.fetchall()
+    cursor.close()
+    conn.close()
+
+    return jsonify({"alunos": alunos})
+
+
+@app.route('/api/observacoes/<int:aluno_id>')
+def get_observacoes(aluno_id):
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT observacao FROM observacoes_alunos WHERE aluno_id = %s ORDER BY id DESC", (aluno_id,))
+    observacoes = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return jsonify({"observacoes": observacoes})
+
+
+@app.route('/api/observacoes', methods=['POST'])
+def post_observacao():
+    data = request.get_json()
+    aluno_id = data.get("aluno_id")
+    observacao = data.get("observacao")
+
+    if not aluno_id or not observacao:
+        return jsonify({"error": "Dados inválidos"}), 400
+
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO observacoes_alunos (aluno_id, observacao) VALUES (%s, %s)", (aluno_id, observacao))
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    return jsonify({"status": "ok"})
+
+
 
 
 
