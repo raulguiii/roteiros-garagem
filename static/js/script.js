@@ -62,43 +62,6 @@ function toggleUserMenu() {
 
 
 
-const modalEditar = document.getElementById("editarAlunoModal");
-  const btnEditar = document.querySelector(".btn-editar-primary");
-  const closeEditar = document.querySelector(".close-button-editar");
-  const buscarEditar = document.getElementById("buscarEditar");
-  const camposEditar = document.getElementById("camposEditar");
-
-  // Abrir modal
-  btnEditar.addEventListener("click", () => {
-    modalEditar.style.display = "block";
-    camposEditar.style.display = "none";
-  });
-
-  // Fechar modal
-  closeEditar.addEventListener("click", () => {
-    modalEditar.style.display = "none";
-  });
-
-  window.addEventListener("click", (event) => {
-    if (event.target == modalEditar) {
-      modalEditar.style.display = "none";
-    }
-  });
-
-  // Mostrar campos ao clicar no ícone de busca
-  buscarEditar.addEventListener("click", () => {
-    camposEditar.style.display = "block";
-  });
-
-  // Enviar formulário (pode ser ajustado depois para enviar via AJAX/Flask)
-  document.getElementById("formEditarAluno").addEventListener("submit", function (e) {
-    e.preventDefault();
-    alert("Edições salvas com sucesso!");
-    modalEditar.style.display = "none";
-    this.reset();
-    camposEditar.style.display = "none";
-  });
-
 document.addEventListener('DOMContentLoaded', function () {
   const modalFrequencia = document.getElementById('frequenciaModal');
   const closeFrequencia = document.querySelector('.close-button-frequencia');

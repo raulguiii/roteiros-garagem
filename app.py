@@ -436,10 +436,8 @@ def remover_aluno_roteiro1apae(nome_completo):
 
     aluno_id = aluno[0]
 
-    # Apagar observações relacionadas
     cursor.execute("DELETE FROM observacoes_alunos_roteiro1apae WHERE aluno_id = %s", (aluno_id,))
 
-    # Apagar o aluno
     cursor.execute("DELETE FROM alunos_roteiro1apae WHERE id = %s", (aluno_id,))
 
     conn.commit()
@@ -447,6 +445,58 @@ def remover_aluno_roteiro1apae(nome_completo):
     conn.close()
 
     return jsonify({"status": "aluno_removido"})
+
+#                                              EDITAR ALUNOS ROTEIRO 1 APAE
+@app.route('/api/buscar_aluno_roteiro1apae', methods=['GET'])
+def buscar_aluno_roteiro1apae():
+    nome = request.args.get('nome')
+
+    if not nome:
+        return jsonify({"erro": "Nome não fornecido"}), 400
+
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM alunos_roteiro1apae WHERE nome_completo = %s", (nome,))
+    aluno = cursor.fetchone()
+    cursor.close()
+    conn.close()
+
+    if aluno:
+        return jsonify({"aluno": aluno})
+    else:
+        return jsonify({"erro": "Aluno não encontrado"}), 404
+
+@app.route('/api/editar_aluno_roteiro1apae', methods=['POST'])
+def editar_aluno_roteiro1apae():
+    data = request.get_json()
+
+    nome = data.get("nome")
+    escola = data.get("escola")
+    serie = data.get("serie")
+    horario = data.get("horario")
+    endereco = data.get("endereco")
+    responsavel = data.get("responsavel")
+    cid = data.get("cid")
+
+    if not nome:
+        return jsonify({"erro": "Nome do aluno não fornecido"}), 400
+
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+    cursor.execute("""
+        UPDATE alunos_roteiro1apae
+        SET escola = %s, serie = %s, horario = %s, endereco = %s, responsavel = %s, cid = %s
+        WHERE nome_completo = %s
+    """, (escola, serie, horario, endereco, responsavel, cid, nome))
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    if cursor.rowcount == 0:
+        return jsonify({"erro": "Aluno não encontrado"}), 404
+
+    return jsonify({"status": "aluno_atualizado"}), 200
+
 
 #                                              GET OBSERVACOES ROTEIRO 1 APAE
 @app.route('/api/observacoes/<int:aluno_id>')
