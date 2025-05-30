@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
           optionVazia.selected = true;
           select.appendChild(optionVazia);
 
-          ['PF','PP','FF','FP','A','SA'].forEach(opt => {
+          ['PF','PP','FF','FP','A','S/A'].forEach(opt => {
             const option = document.createElement('option');
             option.value = opt;
             option.text = opt;
