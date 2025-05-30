@@ -62,24 +62,6 @@ function toggleUserMenu() {
 
 
 
-const modalAdicionar = document.getElementById("adicionarAlunoModal");
-  const btnAdicionar = document.querySelector(".btn-adicionar-primary");
-  const closeAdicionar = document.querySelector(".close-button-adicionar");
-
-  btnAdicionar.addEventListener("click", () => {
-    modalAdicionar.style.display = "block";
-  });
-
-  closeAdicionar.addEventListener("click", () => {
-    modalAdicionar.style.display = "none";
-  });
-
-  window.addEventListener("click", (event) => {
-    if (event.target == modalAdicionar) {
-      modalAdicionar.style.display = "none";
-    }
-  });
-
 
   const modalRemover = document.getElementById("removerAlunoModal");
   const btnRemover = document.querySelector(".btn-remover-outline");

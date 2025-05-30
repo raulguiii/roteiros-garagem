@@ -371,6 +371,9 @@ def salvar_ocorrencia():
         return jsonify({'success': False, 'message': str(e)}), 500
     
 
+#                                               R O T E I R O    1      A P A E
+
+#                                              GET ALUNOS ROTEIRO 1 APAE
 @app.route('/api/alunos_roteiro1apae')
 def api_alunos_roteiro1apae():
     if 'nome_completo' not in session or 'cargo' not in session:
@@ -378,14 +381,42 @@ def api_alunos_roteiro1apae():
 
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM alunos_roteiro1apae")
+    cursor.execute("SELECT * FROM alunos_roteiro1apae ORDER BY escola ASC")
     alunos = cursor.fetchall()
     cursor.close()
     conn.close()
 
     return jsonify({"alunos": alunos})
 
+#                                              POST NOVO ALUNO ROTEIRO 1 APAE
+@app.route('/api/alunos_roteiro1apae', methods=['POST'])
+def adicionar_aluno_roteiro1apae():
+    data = request.get_json()
 
+    escola = data.get("escola")
+    serie = data.get("serie")
+    nome_completo = data.get("nome_completo")
+    horario = data.get("horario")
+    endereco = data.get("endereco")
+    responsavel = data.get("responsavel")
+    cid = data.get("cid")
+
+    if not all([escola, serie, nome_completo, horario, endereco, responsavel, cid]):
+        return jsonify({"erro": "Dados incompletos"}), 400
+
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+    cursor.execute("""
+        INSERT INTO alunos_roteiro1apae (escola, serie, nome_completo, horario, endereco, responsavel, cid)
+        VALUES (%s, %s, %s, %s, %s, %s, %s)
+    """, (escola, serie, nome_completo, horario, endereco, responsavel, cid))
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    return jsonify({"status": "aluno_adicionado"}), 201
+
+#                                              GET OBSERVACOES ROTEIRO 1 APAE
 @app.route('/api/observacoes/<int:aluno_id>')
 def get_observacoes(aluno_id):
     conn = mysql.connector.connect(**db_config)
@@ -396,7 +427,7 @@ def get_observacoes(aluno_id):
     conn.close()
     return jsonify({"observacoes": observacoes})
 
-
+#                                              POST OBSERVACOES ROTEIRO 1 APAE
 @app.route('/api/observacoes', methods=['POST'])
 def post_observacao():
     data = request.get_json()
