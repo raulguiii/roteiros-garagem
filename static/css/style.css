@@ -1293,3 +1293,106 @@ select {
 #fecharMensagensDiretas:hover {
   color: red;
 }
+
+
+/* Modal Frequência Responsivo */
+#frequenciaModal .modal-content {
+  max-width: 60%;
+  width: 100%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+#frequenciaModal table {
+  width: 100%;
+  min-width: 800px;
+  border-collapse: collapse;
+}
+
+#frequenciaModal th,
+#frequenciaModal td {
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+
+#frequenciaModal select {
+  width: 65px;
+  padding: 4px;
+}
+
+#frequenciaModal .close-button-frequencia {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#frequenciaModal h2 {
+  margin-top: 0;
+}
+
+/* Botão Salvar */
+#frequenciaModal .btn-salvar {
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+#frequenciaModal .btn-salvar:hover {
+  background-color: #45a049;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  #frequenciaModal .modal-content {
+    max-width: 95%;
+    padding: 15px;
+  }
+
+  #frequenciaModal th, 
+  #frequenciaModal td {
+    padding: 6px;
+  }
+
+  #frequenciaModal select {
+    width: 55px;
+  }
+}
+
+@media (max-width: 480px) {
+  #frequenciaModal th, 
+  #frequenciaModal td {
+    padding: 4px;
+    font-size: 12px;
+  }
+
+  #frequenciaModal select {
+    width: 50px;
+    padding: 2px;
+    font-size: 12px;
+  }
+
+  #frequenciaModal h2 {
+    font-size: 16px;
+  }
+
+  #frequenciaModal .btn-salvar {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+}
+

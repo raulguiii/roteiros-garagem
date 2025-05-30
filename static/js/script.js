@@ -62,3 +62,33 @@ function toggleCollapse(id) {
     content.style.display = isVisible ? "none" : "block";
 }
 
+
+// Abrir e Fechar Modal de Frequência
+const frequenciaBtn = document.querySelector('.btn-frequencia-outline');
+const frequenciaModal = document.getElementById('frequenciaModal');
+const closeFrequencia = document.querySelector('.close-button-frequencia');
+
+if (frequenciaBtn) {
+  frequenciaBtn.addEventListener('click', () => {
+    frequenciaModal.style.display = 'block';
+  });
+}
+
+closeFrequencia.addEventListener('click', () => {
+  frequenciaModal.style.display = 'none';
+});
+
+window.addEventListener('click', (e) => {
+  if (e.target == frequenciaModal) {
+    frequenciaModal.style.display = 'none';
+  }
+});
+
+// Evento de Salvar
+document.getElementById('frequenciaForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  alert('Frequência salva com sucesso!');
+  frequenciaModal.style.display = 'none';
+});
+
+
