@@ -69,11 +69,6 @@ document.querySelector(".close-button-observacao").addEventListener("click", () 
   document.getElementById("observacaoModal").style.display = "none";
 });
 
-window.addEventListener("click", (event) => {
-  if (event.target == document.getElementById("observacaoModal")) {
-    document.getElementById("observacaoModal").style.display = "none";
-  }
-});
 
 // Enviar nova observação para o backend
 document.getElementById('observacaoForm').addEventListener('submit', function(e) {
@@ -126,12 +121,6 @@ const modalAdicionar = document.getElementById("adicionarAlunoModal");
 
   closeAdicionar.addEventListener("click", () => {
     modalAdicionar.style.display = "none";
-  });
-
-  window.addEventListener("click", (event) => {
-    if (event.target == modalAdicionar) {
-      modalAdicionar.style.display = "none";
-    }
   });
 
  const formAdicionarAluno = document.getElementById("formAdicionarAluno");
@@ -203,11 +192,6 @@ closeRemover.addEventListener("click", () => {
   modalRemover.style.display = "none";
 });
 
-window.addEventListener("click", (event) => {
-  if (event.target == modalRemover) {
-    modalRemover.style.display = "none";
-  }
-});
 
 // Buscar aluno
 btnBuscar.addEventListener("click", () => {
@@ -287,12 +271,6 @@ btnEditar.addEventListener("click", () => {
 // Fechar modal
 closeEditar.addEventListener("click", () => {
   modalEditar.style.display = "none";
-});
-
-window.addEventListener("click", (event) => {
-  if (event.target == modalEditar) {
-    modalEditar.style.display = "none";
-  }
 });
 
 // Buscar aluno

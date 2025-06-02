@@ -45,13 +45,6 @@ closeAtestadoButton.addEventListener('click', () => {
   atestadoModal.style.display = 'none';
 });
 
-// Fecha o modal se clicar fora do conteúdo
-window.addEventListener('click', (event) => {
-  if (event.target == atestadoModal) {
-    atestadoModal.style.display = 'none';
-  }
-});
-
 // Ação do formulário de atestado com envio via API
 document.getElementById('atestadoForm').addEventListener('submit', function(e) {
   e.preventDefault();

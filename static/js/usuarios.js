@@ -63,12 +63,6 @@ document.querySelector(".close-button-comunicado").addEventListener("click", fun
   document.getElementById("comunicadoModal").style.display = "none";
 });
 
-window.onclick = function(event) {
-  const modal = document.getElementById("comunicadoModal");
-  if (event.target === modal) {
-    modal.style.display = "none";
-  }
-};
 document.getElementById("formComunicado").addEventListener("submit", function (e) {
   e.preventDefault();
 

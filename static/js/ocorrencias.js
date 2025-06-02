@@ -98,13 +98,6 @@ closeButton.addEventListener('click', () => {
   modal.style.display = 'none';
 });
 
-// Fecha o modal se clicar fora do conteúdo
-window.addEventListener('click', (event) => {
-  if (event.target == modal) {
-    modal.style.display = 'none';
-  }
-});
-
 document.getElementById('ocorrenciaForm').addEventListener('submit', function (e) {
   e.preventDefault();
 
