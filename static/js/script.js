@@ -78,11 +78,6 @@ closeFrequencia.addEventListener('click', () => {
   frequenciaModal.style.display = 'none';
 });
 
-window.addEventListener('click', (e) => {
-  if (e.target == frequenciaModal) {
-    frequenciaModal.style.display = 'none';
-  }
-});
 
 
 document.addEventListener('DOMContentLoaded', () => {
