@@ -600,6 +600,27 @@ def adicionar_aluno_roteiro3noa():
 
     return jsonify({"status": "Aluno adicionado com sucesso"})
 
+# DELETE - Remover aluno roteiro 3 NOA
+@app.route('/api/alunos_roteiro3noa/<string:nome_completo>', methods=['DELETE'])
+def remover_aluno_roteiro3noa(nome_completo):
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM alunos_roteiro3noa WHERE nome_completo = %s", (nome_completo,))
+    aluno = cursor.fetchone()
+
+    if not aluno:
+        cursor.close()
+        conn.close()
+        return jsonify({"erro": "Aluno não encontrado"}), 404
+
+    cursor.execute("DELETE FROM alunos_roteiro3noa WHERE nome_completo = %s", (nome_completo,))
+    conn.commit()
+
+    cursor.close()
+    conn.close()
+
+    return jsonify({"status": "Aluno removido com sucesso"})
 
 
 if __name__ == '__main__':
