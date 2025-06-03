@@ -500,9 +500,8 @@
             <button class="btn btn-remover-outline" data-api="/api/alunos_roteiro1apae">
               <i class="fa-solid fa-trash"></i> Remover Aluno
             </button>
-            <button class="btn btn-editar-primary">
-              <i class="fa-solid fa-pen-to-square"></i>
-              Editar aluno
+            <button class="btn btn-editar-primary" data-api="/api/editar_aluno_roteiro1apae" data-api-busca="/api/buscar_aluno_roteiro1apae">
+              <i class="fa-solid fa-pen-to-square"></i> Editar aluno
             </button>
             {% elif cargo in ['Motorista', 'Monitora'] %}
             <button class="btn btn-outline-atestado btn-atestado">
@@ -760,9 +759,9 @@
         <button class="btn btn-remover-outline" data-api="/api/alunos_roteiro3noa">
             <i class="fa-solid fa-trash"></i> Remover Aluno
         </button>
-        <button class="btn btn-editar-primary">
-          <i class="fa-solid fa-pen-to-square"></i> Editar aluno
-        </button>
+        <button class="btn btn-editar-primary" data-api="/api/editar_aluno_roteiro3noa" data-api-busca="/api/buscar_aluno_roteiro3noa">
+            <i class="fa-solid fa-pen-to-square"></i> Editar aluno
+          </button>
         {% elif cargo in ['Motorista', 'Monitora'] %}
         <button class="btn btn-outline-atestado btn-atestado">
               <i class="fa-solid fa-heart-pulse"></i> 
@@ -1173,7 +1172,6 @@
 </div>
 
 
-<!-- Modal Editar Aluno -->
 <div id="editarAlunoModal" class="modal">
   <div class="modal-content">
     <span class="close-button-editar">&times;</span>
@@ -1181,7 +1179,7 @@
     <form id="formEditarAluno">
       <label for="nomeEditar">Nome do Aluno:</label><br>
       <div style="display: flex; align-items: center; gap: 10px;">
-        <input type="text" id="nomeEditar" name="nomeEditar" required style="flex: 1;">
+        <input type="text" id="nomeEditar" name="nomeEditar" required>
         <i class="fa-solid fa-magnifying-glass" id="buscarEditar" style="cursor: pointer;"></i>
       </div><br>
 
@@ -1203,43 +1201,6 @@
 
         <label for="cidEditar">CID:</label><br>
         <input type="text" id="cidEditar" name="cidEditar"><br><br>
-
-        <button type="submit" class="btn btn-primary">Salvar Edições</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<!-- Modal Editar Aluno 3NOA -->
-<div id="editarAlunoModal3noa" class="modal">
-  <div class="modal-content">
-    <span class="close-button-editar-3noa">&times;</span>
-    <h2>Editar Aluno</h2>
-    <form id="formEditarAluno3noa">
-      <label for="nomeEditar3noa">Nome do Aluno:</label><br>
-      <div style="display: flex; align-items: center; gap: 10px;">
-        <input type="text" id="nomeEditar3noa" name="nomeEditar3noa" required style="flex: 1;">
-        <i class="fa-solid fa-magnifying-glass" id="buscarEditar3noa" style="cursor: pointer;"></i>
-      </div><br>
-
-      <div id="camposEditar3noa" style="display: none;">
-        <label for="escolaEditar3noa">Escola:</label><br>
-        <input type="text" id="escolaEditar3noa" name="escolaEditar3noa"><br><br>
-
-        <label for="serieEditar3noa">Série:</label><br>
-        <input type="text" id="serieEditar3noa" name="serieEditar3noa"><br><br>
-
-        <label for="horarioEditar3noa">Horário:</label><br>
-        <input type="text" id="horarioEditar3noa" name="horarioEditar3noa"><br><br>
-
-        <label for="enderecoEditar3noa">Endereço:</label><br>
-        <input type="text" id="enderecoEditar3noa" name="enderecoEditar3noa"><br><br>
-
-        <label for="responsavelEditar3noa">Responsável (Nome e Celular):</label><br>
-        <input type="text" id="responsavelEditar3noa" name="responsavelEditar3noa"><br><br>
-
-        <label for="cidEditar3noa">CID:</label><br>
-        <input type="text" id="cidEditar3noa" name="cidEditar3noa"><br><br>
 
         <button type="submit" class="btn btn-primary">Salvar Edições</button>
       </div>
@@ -1337,6 +1298,7 @@
     <script src="static/js/roteiro3noa.js"></script>
     <script src="static/js/novoaluno.js"></script>
     <script src="static/js/removealuno.js"></script>
+    <script src="static/js/editaraluno.js"></script>
 
   </body>
 </html>

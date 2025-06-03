@@ -1003,7 +1003,8 @@ body {
 .close-button-adicionar-3noa,
 .close-button-remover-3noa,
 .close-button-observacao-3noa,
-.close-button-editar-3noa {
+.close-button-editar-3noa,
+.close-modal {
   color: #aaa;
   float: right;
   font-size: 28px;
@@ -1157,7 +1158,7 @@ select {
 #adicionarAlunoModal3noa .modal-content,
 #removerAlunoModal3noa .modal-content,
 #observacaoModal3noa .modal-content,
-#editarAlunoModal3noa .modal-content,
+#modalEditar .modal-content,
 #modalAdicionarAluno .modal-content {
   max-width: 600px;
   width: 95%;
