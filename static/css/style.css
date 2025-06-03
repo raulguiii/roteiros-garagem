@@ -1255,21 +1255,6 @@ select {
   margin-top: 0;
 }
 
-/* Botão Salvar */
-#frequenciaModal .btn-salvar {
-  background-color: #4CAF50;
-  color: white;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: background-color 0.3s ease;
-}
-
-#frequenciaModal .btn-salvar:hover {
-  background-color: #45a049;
-}
 
 /* Responsividade */
 @media (max-width: 768px) {
@@ -1311,3 +1296,32 @@ select {
   }
 }
 
+.frequencia-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.frequencia-footer .legenda {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 70%;
+}
+
+#frequenciaModal .btn-salvar {
+  background-color: #3a0ca3;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: auto;
+}
+
+#frequenciaModal .btn-salvar:hover {
+  background-color: #310a8d;
+}
