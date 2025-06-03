@@ -90,63 +90,6 @@ document.querySelector(".close-button-observacao-3noa").addEventListener("click"
 });
 
 
-// ADICIONAR ALUNO - Giovana e Jussimar
-const modalAdicionar3noa = document.getElementById("adicionarAlunoModal3noa");
-const btnAdicionar3noa = document.querySelector("#giovana-jussimar .btn-adicionar-primary");
-const closeAdicionar3noa = document.querySelector(".close-button-adicionar-3noa");
-
-btnAdicionar3noa.addEventListener("click", () => {
-  modalAdicionar3noa.style.display = "block";
-});
-
-closeAdicionar3noa.addEventListener("click", () => {
-  modalAdicionar3noa.style.display = "none";
-});
-
-const formAdicionarAluno3noa = document.getElementById("formAdicionarAluno3noa");
-
-formAdicionarAluno3noa.addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  const escola = document.getElementById("escola3noa").value;
-  const serie = document.getElementById("serie3noa").value;
-  const nome_completo = document.getElementById("nomeAluno3noa").value;
-  const horario = document.getElementById("horario3noa").value;
-  const endereco = document.getElementById("endereco3noa").value;
-  const responsavel = document.getElementById("responsavel3noa").value;
-  const cid = document.getElementById("cid3noa").value;
-
-  fetch("/api/alunos_roteiro3noa", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      escola,
-      serie,
-      nome_completo,
-      horario,
-      endereco,
-      responsavel,
-      cid,
-    }),
-  })
-    .then((res) => {
-      if (!res.ok) throw new Error("Erro ao adicionar aluno.");
-      return res.json();
-    })
-    .then((data) => {
-      alert("Aluno adicionado com sucesso!");
-      formAdicionarAluno3noa.reset();
-      modalAdicionar3noa.style.display = "none";
-      carregarAlunosRoteiro3Noa(); // Recarrega a tabela
-    })
-    .catch((err) => {
-      alert("Erro: " + err.message);
-    });
-});
-
-
 // -------- REMOVER ALUNO - Giovana e Jussimar --------
 
 const modalRemover3noa = document.getElementById("removerAlunoModal3noa");

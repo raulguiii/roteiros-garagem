@@ -108,67 +108,6 @@ function renderizarObservacoes(observacoes) {
   });
 }
 
-
-                        //  ADICIONAR ALUNO 
-
-const modalAdicionar = document.getElementById("adicionarAlunoModal");
-  const btnAdicionar = document.querySelector(".btn-adicionar-primary");
-  const closeAdicionar = document.querySelector(".close-button-adicionar");
-
-  btnAdicionar.addEventListener("click", () => {
-    modalAdicionar.style.display = "block";
-  });
-
-  closeAdicionar.addEventListener("click", () => {
-    modalAdicionar.style.display = "none";
-  });
-
- const formAdicionarAluno = document.getElementById("formAdicionarAluno");
-
-  formAdicionarAluno.addEventListener("submit", function (e) {
-    e.preventDefault(); // Impede o recarregamento da página
-
-    // Captura os valores do formulário
-    const escola = document.getElementById("escola").value;
-    const serie = document.getElementById("serie").value;
-    const nome_completo = document.getElementById("nomeAluno").value;
-    const horario = document.getElementById("horario").value;
-    const endereco = document.getElementById("endereco").value;
-    const responsavel = document.getElementById("responsavel").value;
-    const cid = document.getElementById("cid").value;
-
-    // Envia os dados para a API
-    fetch("/api/alunos_roteiro1apae", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        escola,
-        serie,
-        nome_completo,
-        horario,
-        endereco,
-        responsavel,
-        cid,
-      }),
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error("Erro ao adicionar aluno.");
-        return res.json();
-      })
-      .then((data) => {
-        alert("Aluno adicionado com sucesso!");
-        formAdicionarAluno.reset();
-        modalAdicionar.style.display = "none";
-        carregarAlunosRoteiro1Apae(); // <- Recarrega a tabela após adicionar
-        })
-      .catch((err) => {
-        alert("Erro: " + err.message);
-      });
-  });
-
-
                         //  REMOVER ALUNO 
 
 const modalRemover = document.getElementById("removerAlunoModal");

@@ -759,12 +759,12 @@ body {
   box-shadow: 0 6px 15px rgba(58, 12, 163, 0.2);
 }
 
-.btn-adicionar-primary {
+.btn-adicionar {
   background: linear-gradient(135deg, var(--primary), var(--primary-light));
   color: white;
 }
 
-.btn-adicionar-primary:hover {
+.btn-adicionar:hover {
   background: linear-gradient(135deg, var(--secondary), var(--primary));
   transform: translateY(-2px);
   box-shadow: 0 6px 15px rgba(58, 12, 163, 0.2);
@@ -1145,7 +1145,6 @@ select {
 
 
 
-
 /* Modais com muitos campos */
 #adicionarAlunoModal .modal-content,
 #editarAlunoModal .modal-content,
@@ -1158,7 +1157,8 @@ select {
 #adicionarAlunoModal3noa .modal-content,
 #removerAlunoModal3noa .modal-content,
 #observacaoModal3noa .modal-content,
-#editarAlunoModal3noa .modal-content {
+#editarAlunoModal3noa .modal-content,
+#modalAdicionarAluno .modal-content {
   max-width: 600px;
   width: 95%;
 }

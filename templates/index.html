@@ -493,11 +493,11 @@
           <div class="title">ROTEIRO APAE - ANA E RAFAEL</div>
           <div class="action-buttons">
             {% if cargo == 'Admin' %}
-            <button class="btn btn-adicionar-primary">
+            <button class="btn btn-adicionar" data-api="/api/alunos_roteiro1apae">
               <i class="fa-solid fa-plus"></i>
               Adicionar Aluno
             </button>
-            <button class="btn btn-remover-outline">
+            <button class="btn btn btn-remover-outline">
               <i class="fa-solid fa-trash"></i>
               Remover Aluno
             </button>
@@ -755,7 +755,7 @@
       <div class="title">ROTEIRO NOA - GIOVANA E JUSSIMAR</div>
       <div class="action-buttons">
         {% if cargo == 'Admin' %}
-        <button class="btn btn-adicionar-primary">
+        <button class="btn btn-adicionar" data-api="/api/alunos_roteiro3noa">
           <i class="fa-solid fa-plus"></i> Adicionar Aluno
         </button>
         <button class="btn btn-remover-outline">
@@ -1117,31 +1117,31 @@
   </div>
 </div>
 
-<!-- Modal Adicionar Aluno -->
-<div id="adicionarAlunoModal" class="modal">
+<!-- MODAL ADICIONAR ALUNO -->
+<div id="modalAdicionarAluno" class="modal">
   <div class="modal-content">
     <span class="close-button-adicionar">&times;</span>
-    <h2>Adicionar Aluno</h2>
+    <h2 id="tituloModal">Adicionar Aluno</h2>
     <form id="formAdicionarAluno">
-      <label for="escola">Escola do Aluno:</label><br>
+      <label>Escola:</label><br>
       <input type="text" id="escola" name="escola" required><br><br>
 
-      <label for="serie">Série do Aluno:</label><br>
+      <label>Série:</label><br>
       <input type="text" id="serie" name="serie" required><br><br>
 
-      <label for="nomeAluno">Nome Completo do Aluno:</label><br>
-      <input type="text" id="nomeAluno" name="nomeAluno" required><br><br>
+      <label>Nome completo:</label><br>
+      <input type="text" id="nome_completo" name="nome_completo" required><br><br>
 
-      <label for="horario">Horário do Aluno:</label><br>
+      <label>Horário:</label><br>
       <input type="text" id="horario" name="horario" required><br><br>
 
-      <label for="endereco">Endereço do Aluno:</label><br>
+      <label>Endereço:</label><br>
       <input type="text" id="endereco" name="endereco" required><br><br>
 
-      <label for="responsavel">Responsável (Nome e Celular):</label><br>
-      <input type="text" id="responsavel" name="responsavel" placeholder="Ex: Maria - (11) 91234-5678" required><br><br>
+      <label>Responsável:</label><br>
+      <input type="text" id="responsavel" name="responsavel" required><br><br>
 
-      <label for="cid">CID:</label><br>
+      <label>CID:</label><br>
       <input type="text" id="cid" name="cid" required><br><br>
 
       <button type="submit" class="btn btn-primary">Salvar</button>
@@ -1149,52 +1149,6 @@
   </div>
 </div>
 
-<!-- Modal Adicionar Aluno - Giovana e Jussimar -->
-<div class="modal" id="adicionarAlunoModal3noa">
-  <div class="modal-content">
-    <span class="close-button-adicionar-3noa">&times;</span>
-    <h2>Adicionar Aluno</h2>
-    <form id="formAdicionarAluno3noa">
-
-      <div>
-        <label for="escola3noa">Escola:</label><br>
-        <input type="text" id="escola3noa" name="escola" required><br>
-      </div>
-
-      <div>
-        <label for="serie3noa">Série:</label><br>
-        <input type="text" id="serie3noa" name="serie"><br>
-      </div>
-
-      <div>
-        <label for="nomeAluno3noa">Nome completo:</label><br>
-        <input type="text" id="nomeAluno3noa" name="nome_completo" required><br>
-      </div>
-
-      <div>
-        <label for="horario3noa">Horário:</label><br>
-        <input type="text" id="horario3noa" name="horario"><br>
-      </div>
-
-      <div>
-        <label for="endereco3noa">Endereço:</label><br>
-        <input type="text" id="endereco3noa" name="endereco"><br>
-      </div>
-
-      <div>
-        <label for="responsavel3noa">Responsável:</label><br>
-        <input type="text" id="responsavel3noa" name="responsavel" placeholder="Ex: Maria - (11) 91234-5678"><br>
-      </div>
-
-      <div>
-        <label for="cid3noa">CID:</label><br>
-        <input type="text" id="cid3noa" name="cid"><br><br>
-      </div>
-
-      <button type="submit" class="btn btn-primary">Salvar</button>
-    </form>
-  </div>
-</div>
 
 <!-- Modal Remover Aluno -->
 <div id="removerAlunoModal" class="modal">
@@ -1404,6 +1358,7 @@
     <script src="static/js/atestados.js"></script>
     <script src="static/js/roteiro1apae.js"></script>
     <script src="static/js/roteiro3noa.js"></script>
+    <script src="static/js/funcoes.js"></script>
 
   </body>
 </html>
