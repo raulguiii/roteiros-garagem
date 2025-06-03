@@ -1221,7 +1221,7 @@
 <div id="removerAlunoModal3noa" class="modal">
   <div class="modal-content">
     <span class="close-button-remover-3noa">&times;</span>
-    <h2>Remover Aluno - 3º NOA</h2>
+    <h2>Remover Aluno</h2>
     <form id="formRemoverAluno3noa">
       <label for="nomeRemover3noa">Nome do Aluno:</label><br>
       <div style="display: flex; align-items: center; gap: 10px;">
@@ -1276,6 +1276,44 @@
     </form>
   </div>
 </div>
+
+<!-- Modal Editar Aluno 3NOA -->
+<div id="editarAlunoModal3noa" class="modal">
+  <div class="modal-content">
+    <span class="close-button-editar-3noa">&times;</span>
+    <h2>Editar Aluno</h2>
+    <form id="formEditarAluno3noa">
+      <label for="nomeEditar3noa">Nome do Aluno:</label><br>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <input type="text" id="nomeEditar3noa" name="nomeEditar3noa" required style="flex: 1;">
+        <i class="fa-solid fa-magnifying-glass" id="buscarEditar3noa" style="cursor: pointer;"></i>
+      </div><br>
+
+      <div id="camposEditar3noa" style="display: none;">
+        <label for="escolaEditar3noa">Escola:</label><br>
+        <input type="text" id="escolaEditar3noa" name="escolaEditar3noa"><br><br>
+
+        <label for="serieEditar3noa">Série:</label><br>
+        <input type="text" id="serieEditar3noa" name="serieEditar3noa"><br><br>
+
+        <label for="horarioEditar3noa">Horário:</label><br>
+        <input type="text" id="horarioEditar3noa" name="horarioEditar3noa"><br><br>
+
+        <label for="enderecoEditar3noa">Endereço:</label><br>
+        <input type="text" id="enderecoEditar3noa" name="enderecoEditar3noa"><br><br>
+
+        <label for="responsavelEditar3noa">Responsável (Nome e Celular):</label><br>
+        <input type="text" id="responsavelEditar3noa" name="responsavelEditar3noa"><br><br>
+
+        <label for="cidEditar3noa">CID:</label><br>
+        <input type="text" id="cidEditar3noa" name="cidEditar3noa"><br><br>
+
+        <button type="submit" class="btn btn-primary">Salvar Edições</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 
 <!-- Mensagem direta modal -->
 <div id="mensagemDiretaModal" class="modal">

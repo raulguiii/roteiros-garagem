@@ -622,6 +622,61 @@ def remover_aluno_roteiro3noa(nome_completo):
 
     return jsonify({"status": "Aluno removido com sucesso"})
 
+# ---------------- BUSCAR ALUNO - ROTEIRO 3NOA ----------------
+@app.route('/api/buscar_aluno_roteiro3noa', methods=['GET'])
+def buscar_aluno_roteiro3noa():
+    nome = request.args.get('nome')
+
+    if not nome:
+        return jsonify({"erro": "Nome não fornecido"}), 400
+
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM alunos_roteiro3noa WHERE nome_completo = %s", (nome,))
+    aluno = cursor.fetchone()
+    cursor.close()
+    conn.close()
+
+    if aluno:
+        return jsonify({"aluno": aluno})
+    else:
+        return jsonify({"erro": "Aluno não encontrado"}), 404
+
+# ---------------- EDITAR ALUNO - ROTEIRO 3NOA ----------------
+@app.route('/api/editar_aluno_roteiro3noa', methods=['POST'])
+def editar_aluno_roteiro3noa():
+    data = request.get_json()
+
+    nome = data.get("nome")
+    escola = data.get("escola")
+    serie = data.get("serie")
+    horario = data.get("horario")
+    endereco = data.get("endereco")
+    responsavel = data.get("responsavel")
+    cid = data.get("cid")
+
+    if not nome:
+        return jsonify({"erro": "Nome do aluno não fornecido"}), 400
+
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+    cursor.execute("""
+        UPDATE alunos_roteiro3noa
+        SET escola = %s, serie = %s, horario = %s, endereco = %s, responsavel = %s, cid = %s
+        WHERE nome_completo = %s
+    """, (escola, serie, horario, endereco, responsavel, cid, nome))
+    conn.commit()
+
+    linhas_afetadas = cursor.rowcount
+
+    cursor.close()
+    conn.close()
+
+    if linhas_afetadas == 0:
+        return jsonify({"erro": "Aluno não encontrado"}), 404
+
+    return jsonify({"status": "aluno_atualizado"}), 200
+
 
 if __name__ == '__main__':
     app.run(debug=True)

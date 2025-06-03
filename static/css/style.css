@@ -1136,6 +1136,32 @@ input, textarea {
   color: black;
 }
 
+.close-button-observacao-3noa,
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.close-button-observacao-3noa:hover,
+.close-button:hover {
+  color: black;
+}
+
+.close-button-editar-3noa,
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.close-button-editar-3noa:hover,
+.close-button:hover {
+  color: black;
+}
+
 
 .collapse-content .nav-item {
     padding-left: 10px;
@@ -1255,6 +1281,12 @@ select {
 
 #adicionarAlunoModal3noa .modal-content,
 #removerAlunoModal3noa .modal-content {
+  max-width: 600px;
+  width: 95%;
+}
+
+#observacaoModal3noa .modal-content,
+#editarAlunoModal3noa .modal-content {
   max-width: 600px;
   width: 95%;
 }
