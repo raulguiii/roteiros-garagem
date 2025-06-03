@@ -576,6 +576,31 @@ def post_observacao_3noa():
 
     return jsonify({"status": "ok"})
 
+# POST - Adicionar aluno roteiro 3 NOA
+@app.route('/api/alunos_roteiro3noa', methods=['POST'])
+def adicionar_aluno_roteiro3noa():
+    data = request.get_json()
+
+    campos = ['escola', 'serie', 'nome_completo', 'horario', 'endereco', 'responsavel', 'cid']
+    if not all(campo in data for campo in campos):
+        return jsonify({"erro": "Dados incompletos"}), 400
+
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+    cursor.execute("""
+        INSERT INTO alunos_roteiro3noa (escola, serie, nome_completo, horario, endereco, responsavel, cid)
+        VALUES (%s, %s, %s, %s, %s, %s, %s)
+    """, (
+        data['escola'], data['serie'], data['nome_completo'],
+        data['horario'], data['endereco'], data['responsavel'], data['cid']
+    ))
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    return jsonify({"status": "Aluno adicionado com sucesso"})
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
