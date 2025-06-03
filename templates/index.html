@@ -497,9 +497,8 @@
               <i class="fa-solid fa-plus"></i>
               Adicionar Aluno
             </button>
-            <button class="btn btn btn-remover-outline">
-              <i class="fa-solid fa-trash"></i>
-              Remover Aluno
+            <button class="btn btn-remover-outline" data-api="/api/alunos_roteiro1apae">
+              <i class="fa-solid fa-trash"></i> Remover Aluno
             </button>
             <button class="btn btn-editar-primary">
               <i class="fa-solid fa-pen-to-square"></i>
@@ -758,8 +757,8 @@
         <button class="btn btn-adicionar" data-api="/api/alunos_roteiro3noa">
           <i class="fa-solid fa-plus"></i> Adicionar Aluno
         </button>
-        <button class="btn btn-remover-outline">
-          <i class="fa-solid fa-trash"></i> Remover Aluno
+        <button class="btn btn-remover-outline" data-api="/api/alunos_roteiro3noa">
+            <i class="fa-solid fa-trash"></i> Remover Aluno
         </button>
         <button class="btn btn-editar-primary">
           <i class="fa-solid fa-pen-to-square"></i> Editar aluno
@@ -1159,7 +1158,7 @@
       <label for="nomeRemover">Nome do Aluno:</label><br>
       <div style="display: flex; align-items: center; gap: 10px;">
         <input type="text" id="nomeRemover" name="nomeRemover" required style="flex: 1;">
-        <i class="fa-solid fa-magnifying-glass" style="cursor: pointer;"></i>
+        <i class="fa-solid fa-magnifying-glass lupa-remover" style="cursor: pointer;"></i>
       </div><br>
 
       <button type="button" id="btnApagar" class="btn btn-remover-outline">Apagar</button>
@@ -1173,28 +1172,6 @@
   </div>
 </div>
 
-<!-- Modal Remover Aluno 3NOA -->
-<div id="removerAlunoModal3noa" class="modal">
-  <div class="modal-content">
-    <span class="close-button-remover-3noa">&times;</span>
-    <h2>Remover Aluno</h2>
-    <form id="formRemoverAluno3noa">
-      <label for="nomeRemover3noa">Nome do Aluno:</label><br>
-      <div style="display: flex; align-items: center; gap: 10px;">
-        <input type="text" id="nomeRemover3noa" name="nomeRemover3noa" required style="flex: 1;">
-        <i class="fa-solid fa-magnifying-glass" id="btnBuscar3noa" style="cursor: pointer;"></i>
-      </div><br>
-
-      <button type="button" id="btnApagar3noa" class="btn btn-remover-outline">Apagar</button>
-
-      <div id="confirmarRemocao3noa" style="margin-top: 15px; display: none;">
-        <label for="confirmarNome3noa">Digite novamente o nome para confirmar:</label><br>
-        <input type="text" id="confirmarNome3noa" name="confirmarNome3noa" required><br><br>
-        <button type="submit" class="btn btn-primary">Confirmar Remoção</button>
-      </div>
-    </form>
-  </div>
-</div>
 
 <!-- Modal Editar Aluno -->
 <div id="editarAlunoModal" class="modal">
@@ -1358,7 +1335,8 @@
     <script src="static/js/atestados.js"></script>
     <script src="static/js/roteiro1apae.js"></script>
     <script src="static/js/roteiro3noa.js"></script>
-    <script src="static/js/funcoes.js"></script>
+    <script src="static/js/novoaluno.js"></script>
+    <script src="static/js/removealuno.js"></script>
 
   </body>
 </html>
