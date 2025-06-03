@@ -84,18 +84,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // CRIAR NOVA OCORRENCIA
 // Seleciona o botão de ocorrência
-const ocorrenciaButton = document.querySelector('#ana-rafael .btn-primary');
-const modal = document.getElementById('ocorrenciaModal');
-const closeButton = document.querySelector('.close-button');
+const ocorrenciaButtons = document.querySelectorAll('.btn-primary i.fa-triangle-exclamation');
+const ocorrenciaModal = document.getElementById('ocorrenciaModal');
+const closeOcorrenciaButton = document.querySelector('.close-button');
 
-// Abre o modal ao clicar no botão Ocorrência
-ocorrenciaButton.addEventListener('click', () => {
-  modal.style.display = 'block';
+// Abre o modal em qualquer aba
+ocorrenciaButtons.forEach(button => {
+  button.parentElement.addEventListener('click', () => {
+    ocorrenciaModal.style.display = 'block';
+  });
 });
 
-// Fecha o modal ao clicar no X
-closeButton.addEventListener('click', () => {
-  modal.style.display = 'none';
+// Fecha o modal
+closeOcorrenciaButton.addEventListener('click', () => {
+  ocorrenciaModal.style.display = 'none';
 });
 
 document.getElementById('ocorrenciaForm').addEventListener('submit', function (e) {
@@ -121,7 +123,7 @@ document.getElementById('ocorrenciaForm').addEventListener('submit', function (e
   .then(response => {
     if (response.success) {
       alert('Ocorrência registrada com sucesso!');
-      modal.style.display = 'none';
+      ocorrenciaModal.style.display = 'none';
     } else {
       alert('Erro: ' + response.message);
     }

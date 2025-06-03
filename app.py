@@ -600,7 +600,7 @@ def adicionar_aluno_roteiro3noa():
 
     return jsonify({"status": "Aluno adicionado com sucesso"})
 
-# DELETE - Remover aluno roteiro 3 NOA
+#                           DELETE - Remover aluno roteiro 3 NOA
 @app.route('/api/alunos_roteiro3noa/<string:nome_completo>', methods=['DELETE'])
 def remover_aluno_roteiro3noa(nome_completo):
     conn = mysql.connector.connect(**db_config)
@@ -622,7 +622,7 @@ def remover_aluno_roteiro3noa(nome_completo):
 
     return jsonify({"status": "Aluno removido com sucesso"})
 
-# ---------------- BUSCAR ALUNO - ROTEIRO 3NOA ----------------
+#                               EDITAR ALUNO - ROTEIRO 3NOA 
 @app.route('/api/buscar_aluno_roteiro3noa', methods=['GET'])
 def buscar_aluno_roteiro3noa():
     nome = request.args.get('nome')
@@ -642,7 +642,6 @@ def buscar_aluno_roteiro3noa():
     else:
         return jsonify({"erro": "Aluno não encontrado"}), 404
 
-# ---------------- EDITAR ALUNO - ROTEIRO 3NOA ----------------
 @app.route('/api/editar_aluno_roteiro3noa', methods=['POST'])
 def editar_aluno_roteiro3noa():
     data = request.get_json()

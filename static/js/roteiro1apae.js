@@ -343,7 +343,7 @@ document.getElementById("formEditarAluno").addEventListener("submit", async func
 });
 
 
-// Abrir Modal de Frequência
+//                          FREQUÊNCIA
 const frequenciaBtn = document.querySelector('.btn-frequencia-outline');
 const frequenciaModal = document.getElementById('frequenciaModal');
 const closeFrequencia = document.querySelector('.close-button-frequencia');

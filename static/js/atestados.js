@@ -31,16 +31,18 @@ document.querySelector('[data-tab="atestados"]').addEventListener('click', () =>
 });
 
 // Botão de Atestado
-const atestadoButton = document.querySelector('#ana-rafael .btn-outline-atestado');
+const atestadoButtons = document.querySelectorAll('.btn-outline-atestado');
 const atestadoModal = document.getElementById('atestadoModal');
 const closeAtestadoButton = document.querySelector('.close-button-atestado');
 
-// Abre o modal ao clicar no botão Atestado
-atestadoButton.addEventListener('click', () => {
-  atestadoModal.style.display = 'block';
+// Abre o modal em qualquer aba
+atestadoButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    atestadoModal.style.display = 'block';
+  });
 });
 
-// Fecha o modal ao clicar no X
+// Fecha o modal
 closeAtestadoButton.addEventListener('click', () => {
   atestadoModal.style.display = 'none';
 });
