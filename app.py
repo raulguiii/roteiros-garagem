@@ -528,6 +528,72 @@ def post_observacao():
 
     return jsonify({"status": "ok"})
 
+@app.route('/api/frequencia_roteiro1apae', methods=['POST'])
+def salvar_frequencia_roteiro1apae():
+    data = request.get_json()
+    frequencias = data.get('frequencias', [])
+
+    if not frequencias:
+        return jsonify({"erro": "Nenhum dado recebido"}), 400
+
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+
+    for item in frequencias:
+        nome = item.get("nome_completo")
+        data_frequencia = item.get("data")
+        status = item.get("status")
+
+        if not (nome and data_frequencia and status):
+            continue
+
+        # Buscar o ID do aluno
+        cursor.execute("SELECT id FROM alunos_roteiro1apae WHERE nome_completo = %s", (nome,))
+        aluno = cursor.fetchone()
+        if aluno:
+            aluno_id = aluno[0]
+
+            # Tenta inserir ou ignora se já existir (por causa da UNIQUE KEY)
+            try:
+                cursor.execute("""
+                    INSERT INTO frequencia_roteiro1apae (id_aluno, data, status)
+                    VALUES (%s, %s, %s)
+                """, (aluno_id, data_frequencia, status))
+            except mysql.connector.Error as err:
+                # Se já existir (violação de UNIQUE), apenas continue
+                if err.errno == 1062:
+                    continue
+                else:
+                    print("Erro ao inserir frequência:", err)
+
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    return jsonify({"status": "ok"})
+
+@app.route('/api/frequencia_roteiro1apae/<string:roteiro>', methods=['GET'])
+def buscar_frequencias_roteiro1apae(roteiro):
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor(dictionary=True)
+
+    if roteiro != "roteiro1apae":
+        return jsonify([])
+
+    cursor.execute("""
+        SELECT f.id_aluno, a.nome_completo, f.data, f.status
+        FROM frequencia_roteiro1apae f
+        JOIN alunos_roteiro1apae a ON f.id_aluno = a.id
+    """)
+    resultados = cursor.fetchall()
+
+    cursor.close()
+    conn.close()
+
+    return jsonify(resultados)
+
+
+
 
 #                                               R O T E I R O    3      N O A 
 
