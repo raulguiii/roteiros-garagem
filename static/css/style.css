@@ -991,19 +991,44 @@ body {
   box-sizing: border-box;
 }
 
-.close-button {
+/* Botões de Fechar */
+.close-button,
+.close-button-atestado,
+.close-button-observacao,
+.close-button-comunicado,
+.close-button-adicionar,
+.close-button-remover,
+.close-button-editar,
+.close-button-mensagem-direta,
+.close-button-adicionar-3noa,
+.close-button-remover-3noa,
+.close-button-observacao-3noa,
+.close-button-editar-3noa {
   color: #aaa;
   float: right;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
   cursor: pointer;
 }
 
-.close-button:hover {
+.close-button:hover,
+.close-button-atestado:hover,
+.close-button-observacao:hover,
+.close-button-comunicado:hover,
+.close-button-adicionar:hover,
+.close-button-remover:hover,
+.close-button-editar:hover,
+.close-button-mensagem-direta:hover,
+.close-button-adicionar-3noa:hover,
+.close-button-remover-3noa:hover,
+.close-button-observacao-3noa:hover,
+.close-button-editar-3noa:hover {
   color: black;
 }
 
-input, textarea {
+/* Inputs e Textareas */
+input,
+textarea {
   width: 100%;
   padding: 8px;
   margin-top: 5px;
@@ -1011,157 +1036,6 @@ input, textarea {
   border-radius: 6px;
   border: 1px solid #ccc;
 }
-
-.close-button-atestado,
-.close-button {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.close-button-atestado:hover,
-.close-button:hover {
-  color: black;
-}
-
-.close-button-observacao,
-.close-button {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.close-button-observacao:hover,
-.close-button:hover {
-  color: black;
-}
-
-.close-button-comunicado,
-.close-button {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.close-button-comunicado:hover,
-.close-button:hover {
-  color: black;
-}
-
-.close-button-adicionar,
-.close-button {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.close-button-adicionar:hover,
-.close-button:hover {
-  color: black;
-}
-
-.close-button-remover,
-.close-button {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.close-button-remover:hover,
-.close-button:hover {
-  color: black;
-}
-
-.close-button-editar,
-.close-button {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.close-button-editar:hover,
-.close-button:hover {
-  color: black;
-}
-
-
-.close-button-mensagem-direta,
-.close-button {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.close-button-mensagem-direta:hover,
-.close-button:hover {
-  color: black;
-}
-
-.close-button-adicionar-3noa,
-.close-button {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.close-button-adicionar-3noa:hover,
-.close-button:hover {
-  color: black;
-}
-
-.close-button-remover-3noa,
-.close-button {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.close-button-remover-3noa:hover,
-.close-button:hover {
-  color: black;
-}
-
-.close-button-observacao-3noa,
-.close-button {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.close-button-observacao-3noa:hover,
-.close-button:hover {
-  color: black;
-}
-
-.close-button-editar-3noa,
-.close-button {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.close-button-editar-3noa:hover,
-.close-button:hover {
-  color: black;
-}
-
 
 .collapse-content .nav-item {
     padding-left: 10px;
@@ -1272,41 +1146,19 @@ select {
 
 
 
-/* Específico para modais com muitos campos */
+/* Modais com muitos campos */
 #adicionarAlunoModal .modal-content,
-#editarAlunoModal .modal-content {
-  max-width: 600px;
-  width: 95%;
-}
-
+#editarAlunoModal .modal-content,
+#removerAlunoModal .modal-content,
+#observacaoModal .modal-content,
+#ocorrenciaModal .modal-content,
+#atestadoModal .modal-content,
+#comunicadoModal .modal-content,
+#mensagemDiretaModal .modal-content,
 #adicionarAlunoModal3noa .modal-content,
-#removerAlunoModal3noa .modal-content {
-  max-width: 600px;
-  width: 95%;
-}
-
+#removerAlunoModal3noa .modal-content,
 #observacaoModal3noa .modal-content,
 #editarAlunoModal3noa .modal-content {
-  max-width: 600px;
-  width: 95%;
-}
-
-/* Específico para modais com muitos campos */
-#removerAlunoModal .modal-content,
-#observacaoModal .modal-content {
-  max-width: 600px;
-  width: 95%;
-}
-
-/* Específico para modais com muitos campos */
-#ocorrenciaModal .modal-content,
-#atestadoModal .modal-content {
-  max-width: 600px;
-  width: 95%;
-}
-
-#comunicadoModal .modal-content,
-#mensagemDiretaModal .modal-content {
   max-width: 600px;
   width: 95%;
 }
