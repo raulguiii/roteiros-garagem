@@ -529,7 +529,52 @@ def post_observacao():
     return jsonify({"status": "ok"})
 
 
+#                                               R O T E I R O    3      N O A 
 
+#                                              GET ALUNOS ROTEIRO 3 NOA
+@app.route('/api/alunos_roteiro3noa')
+def api_alunos_roteiro3noa():
+    if 'nome_completo' not in session or 'cargo' not in session:
+        return jsonify({"erro": "Não autorizado"}), 401
+
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM alunos_roteiro3noa ORDER BY escola ASC")
+    alunos = cursor.fetchall()
+    cursor.close()
+    conn.close()
+
+    return jsonify({"alunos": alunos})
+
+#                                               GET observações roteiro 3 NOA
+@app.route('/api/observacoes3noa/<int:aluno_id>')
+def get_observacoes_3noa(aluno_id):
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT observacao FROM observacoes_alunos_roteiro3noa WHERE aluno_id = %s ORDER BY id DESC", (aluno_id,))
+    observacoes = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return jsonify({"observacoes": observacoes})
+
+#                                               POST observações roteiro 3 NOA
+@app.route('/api/observacoes3noa', methods=['POST'])
+def post_observacao_3noa():
+    data = request.get_json()
+    aluno_id = data.get("aluno_id")
+    observacao = data.get("observacao")
+
+    if not aluno_id or not observacao:
+        return jsonify({"error": "Dados inválidos"}), 400
+
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO observacoes_alunos_roteiro3noa (aluno_id, observacao) VALUES (%s, %s)", (aluno_id, observacao))
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    return jsonify({"status": "ok"})
 
 
 if __name__ == '__main__':

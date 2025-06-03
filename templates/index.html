@@ -750,9 +750,190 @@
     </div>
 
     <!-- Giovana e Jussimar -->
-    <div class="tab-content" id="giovana-jussimar" style="display: none;">
-        <h2>Roteiro Giovana e Jussimar</h2>
-        <p>Informações do roteiro Giovana e Jussimar aqui.</p>
+  <div class="tab-content" id="giovana-jussimar" style="display: none;">
+    <div class="page-title">
+      <div class="title">ROTEIRO NOA - GIOVANA E JUSSIMAR</div>
+      <div class="action-buttons">
+        {% if cargo == 'Admin' %}
+        <button class="btn btn-adicionar-primary"><i class="fa-solid fa-plus"></i> Adicionar Aluno</button>
+        <button class="btn btn-remover-outline"><i class="fa-solid fa-trash"></i> Remover Aluno</button>
+        <button class="btn btn-editar-primary"><i class="fa-solid fa-pen-to-square"></i> Editar aluno</button>
+        {% elif cargo in ['Motorista', 'Monitora'] %}
+        <button class="btn btn-frequencia-outline"><i class="fa-solid fa-calendar-days"></i> Preencher Frequência</button>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Texto antes dos cards -->
+  <div class="intro-text" style="margin-bottom: 25px; padding: 20px; background-color: #f9f9f9; border-left: 5px solid #ffcc00; border-radius: 6px;">
+    <p style="margin-bottom: 15px;">
+      👋 <strong>Bem-vindo ao Painel NOA - Giovana & Jussimar</strong><br>
+      Este painel foi criado para oferecer uma visão clara e organizada do transporte escolar realizado pelos condutores <strong>Giovana</strong> e <strong>Jussimar</strong>. Aqui você acompanha a quantidade de escolas atendidas, o número total de alunos transportados e a distribuição por turnos. 📊
+    </p>
+    <p>
+      ✅ Os dados estão agrupados em cartões informativos que facilitam o monitoramento diário, a logística e a tomada de decisões. Com esse controle, garantimos mais eficiência e segurança no atendimento das rotas escolares. 🚌✨
+    </p>
+  </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-cards">
+          <div class="stat-card">
+            <div class="card-header">
+              <div>
+                <div class="card-value">4</div>
+                <div class="card-label">Total de Escolas</div>
+              </div>
+              <div class="card-icon purple">
+                <i class="fa-solid fa-school"></i>
+              </div>
+            </div>
+            <div class="card-change positive">
+              <span>Contando todos horários</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="card-header">
+              <div>
+                <div class="card-value">5</div>
+                <div class="card-label">Total de Alunos</div>
+              </div>
+              <div class="card-icon purple">
+                <i class="fas fa-users"></i>
+              </div>
+            </div>
+            <div class="card-change positive">
+              <span>Contando todos horários</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="card-header">
+              <div>
+                <div class="card-value">1</div>
+                <div class="card-label">Total de Alunos</div>
+              </div>
+              <div class="card-icon green">
+                <i class="fa-solid fa-child"></i>
+              </div>
+            </div>
+            <div class="card-change positive">
+              <span>Périodo - 07:00 ás 11:00</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="card-header">
+              <div>
+                <div class="card-value">0</div>
+                <div class="card-label">Total de Alunos</div>
+              </div>
+              <div class="card-icon green">
+                <i class="fa-solid fa-child"></i>
+              </div>
+            </div>
+            <div class="card-change positive">
+              <span>Périodo - 08:00 ás 12:00</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-cards">
+          <div class="stat-card">
+            <div class="card-header">
+              <div>
+                <div class="card-value">2</div>
+                <div class="card-label">Total de Alunos</div>
+              </div>
+              <div class="card-icon green">
+                <i class="fa-solid fa-child"></i>
+              </div>
+            </div>
+            <div class="card-change positive">
+              <span>Périodo - 11:00 ás 15:00</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="card-header">
+              <div>
+                <div class="card-value">0</div>
+                <div class="card-label">Total de Alunos</div>
+              </div>
+              <div class="card-icon green">
+                <i class="fa-solid fa-child"></i>
+              </div>
+            </div>
+            <div class="card-change positive">
+              <span>Périodo - 13:00 ás 17:00</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="card-header">
+              <div>
+                <div class="card-value">2</div>
+                <div class="card-label">Total de Alunos</div>
+              </div>
+              <div class="card-icon green">
+                <i class="fa-solid fa-child"></i>
+              </div>
+            </div>
+            <div class="card-change positive">
+              <span>Périodo - 15:00 ás 19:00</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="card-header">
+              <div>
+                <div class="card-value">0</div>
+                <div class="card-label">Total de Alunos</div>
+              </div>
+              <div class="card-icon green">
+                <i class="fa-solid fa-child"></i>
+              </div>
+            </div>
+            <div class="card-change positive">
+              <span>Périodo - 19:00 ás 23:00</span>
+            </div>
+          </div>
+        </div>
+
+
+    <div class="after-cards-text" style="margin: 30px 0 20px; padding: 20px; background-color: #eef6ff; border-left: 5px solid #3399ff; border-radius: 6px;">
+      <p style="margin-bottom: 15px;">
+        📋 <strong>Confira abaixo a lista completa dos alunos atendidos</strong><br>
+        A tabela apresenta informações detalhadas como: <strong>nome completo</strong>, <strong>escola</strong>, <strong>horário de atendimento</strong>, <strong>endereço</strong>, <strong>responsável</strong>, e qualquer <strong>observação relevante</strong>.
+      </p>
+      <p>
+        ✍️ Utilize os botões de ação para registrar <strong>frequência</strong> ou adicionar <strong>observações importantes</strong> sobre cada aluno.
+      </p>
+    </div>
+
+    <div class="table-card">
+      <div class="card-title">
+        <h3><i class="fas fa-users"></i>Todos alunos</h3>
+      </div>
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Escola</th>
+              <th>Série</th>
+              <th>Nome completo</th>
+              <th>Horário</th>
+              <th>Endereço</th>
+              <th>Responsável</th>
+              <th>CID</th>
+              <th>Observações</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-alunos-roteiro3noa-body">
+            <!-- Preenchido via JS -->
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <!-- Luara e Leandro -->
@@ -847,7 +1028,7 @@
   </div>
 </div>
 
-<!-- Modal de Observações -->
+<!-- Modal de Observações roteiro 1 apae-->
 <div class="modal" id="observacaoModal">
   <div class="modal-content">
     <span class="close-button-observacao">&times;</span>
@@ -860,6 +1041,22 @@
 
     <h3>Observações anteriores:</h3>
     <ul id="listaObservacoes" style="max-height: 200px; overflow-y: auto; padding-left: 20px;"></ul>
+  </div>
+</div>
+
+<!-- Modal de Observações Roteiro 3 NOA-->
+  <div class="modal" id="observacaoModal3noa">
+    <div class="modal-content">
+      <span class="close-button-observacao-3noa">&times;</span>
+      <h2>Adicionar Observação</h2>
+      <form id="observacaoForm3noa">
+        <label>Nova observação:</label><br>
+        <textarea id="novaObservacao3noa" rows="3" required></textarea><br>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </form>
+      <h3>Observações anteriores:</h3>
+      <ul id="listaObservacoes3noa" style="max-height: 200px; overflow-y: auto; padding-left: 20px;"></ul>
+    </div>
   </div>
 </div>
 
@@ -1082,5 +1279,7 @@
     <script src="static/js/ocorrencias.js"></script>
     <script src="static/js/atestados.js"></script>
     <script src="static/js/roteiro1apae.js"></script>
+    <script src="static/js/roteiro3noa.js"></script>
+
   </body>
 </html>
