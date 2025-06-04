@@ -38,7 +38,7 @@ roteiro,
 destino, 
 celular, 
 cpf) 
-VALUES ('Ana Julia', 'ana123', 'Monitora','roteiro1apae', 'RoteirosApae', '1484848118', '1010');
+VALUES ('Giovana', 'giovana123', 'Monitora','roteiro3noa', 'RoteirosNOA', '11574175247', '2020');
 
 -- Monitora/Motorista NOA
 INSERT INTO usuarios (
@@ -139,6 +139,9 @@ CREATE TABLE mensagens_diretas (
 
 
 -- Roteiros 
+
+-- Roteiro 1 Apae - Ana e Rafael 
+select * from alunos_roteiro1apae;
 CREATE TABLE alunos_roteiro1apae (
     id INT AUTO_INCREMENT PRIMARY KEY,
     escola VARCHAR(100),
@@ -149,16 +152,72 @@ CREATE TABLE alunos_roteiro1apae (
     responsavel VARCHAR(150),
     cid VARCHAR(100)
 );
-
-INSERT INTO alunos_roteiro1apae 
-(escola, serie, nome_completo, horario, endereco, responsavel, cid) 
-VALUES 
-('APAE', '2º Ano', 'Rafael Costa Oliveira', '13:00 - 17:00', 'Travessa São José, 321', 'Patrícia Oliveira', 'F81.9');
-
-
+select * from observacoes_alunos_roteiro1apae;
 CREATE TABLE observacoes_alunos_roteiro1apae (
     id INT AUTO_INCREMENT PRIMARY KEY,
     aluno_id INT NOT NULL,
     observacao TEXT NOT NULL
 );
+select * from frequencia_roteiro1apae;
+CREATE TABLE frequencia_roteiro1apae (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_aluno INT NOT NULL,
+    data DATE NOT NULL,
+    status VARCHAR(5) NOT NULL, -- PF, PP, FF, FP, A, SA
+    FOREIGN KEY (id_aluno) REFERENCES alunos_roteiro1apae(id) ON DELETE CASCADE,
+    UNIQUE KEY unique_frequencia (id_aluno, data)
+);
 
+
+
+
+-- Roteiro 2 Apae - Camili e Márcio 
+select * from alunos_roteiro2apae;
+CREATE TABLE alunos_roteiro2apae (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    escola VARCHAR(100),
+    serie VARCHAR(20),
+    nome_completo VARCHAR(150),
+    horario VARCHAR(50),
+    endereco VARCHAR(200),
+    responsavel VARCHAR(150),
+    cid VARCHAR(100)
+);
+CREATE TABLE observacoes_alunos_roteiro2apae (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    aluno_id INT NOT NULL,
+    observacao TEXT NOT NULL
+);
+
+
+
+
+-- Roteiro 3 NOA - Giovana e Jussimar
+select * from alunos_roteiro3noa;
+CREATE TABLE alunos_roteiro3noa (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    escola VARCHAR(100),
+    serie VARCHAR(20),
+    nome_completo VARCHAR(150),
+    horario VARCHAR(50),
+    endereco VARCHAR(200),
+    responsavel VARCHAR(150),
+    cid VARCHAR(100)
+);
+
+CREATE TABLE observacoes_alunos_roteiro3noa (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    aluno_id INT NOT NULL,
+    observacao TEXT NOT NULL
+);
+
+INSERT INTO alunos_roteiro3noa (escola, serie, nome_completo, horario, endereco, responsavel, cid)
+VALUES (
+    'Escola Municipal Aurora', 
+    '3º Ano', 
+    'Lucas Henrique da Silva', 
+    '07:30 - 12:00', 
+    'Rua das Rosas, 456 - Bairro Jardim', 
+    'Maria da Silva', 
+    'F84.0'
+);
