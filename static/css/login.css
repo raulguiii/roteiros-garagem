@@ -166,7 +166,7 @@ img {
   width: 100%;
   display: inline-flex;
   justify-content: center;
-  background-color: var(--first-color);
+  background-color: #1a1a2e;
   color: var(--white-color);
   font-weight: var(--font-semi-bold);
   padding-block: 1.5rem;
