@@ -381,7 +381,20 @@ def api_alunos_roteiro1apae():
 
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM alunos_roteiro1apae ORDER BY escola ASC")
+
+    query = """
+        SELECT * FROM alunos_roteiro1apae
+        ORDER BY FIELD(horario, 
+            '07:00 - 11:00',
+            '08:00 - 12:00',
+            '11:00 - 15:00',
+            '13:00 - 17:00',
+            '15:00 - 19:00',
+            '19:00 - 23:00'
+        ),
+        escola ASC
+    """
+    cursor.execute(query)
     alunos = cursor.fetchall()
     cursor.close()
     conn.close()
@@ -605,7 +618,20 @@ def api_alunos_roteiro3noa():
 
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM alunos_roteiro3noa ORDER BY escola ASC")
+
+    query = """
+        SELECT * FROM alunos_roteiro3noa
+        ORDER BY FIELD(horario, 
+            '07:00 - 11:00',
+            '08:00 - 12:00',
+            '11:00 - 15:00',
+            '13:00 - 17:00',
+            '15:00 - 19:00',
+            '19:00 - 23:00'
+        ),
+        escola ASC
+    """
+    cursor.execute(query)
     alunos = cursor.fetchall()
     cursor.close()
     conn.close()
