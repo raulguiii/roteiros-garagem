@@ -8,8 +8,17 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function carregarAlunosRoteiro3Noa() {
+  const loading = document.getElementById("loading-roteiro3noa");
+  const tabela = document.querySelector("#giovana-jussimar .table-card");
+
+  loading.style.display = "block";
+  tabela.style.display = "none";
+
   fetch('/api/alunos_roteiro3noa')
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) throw new Error("Erro ao carregar dados.");
+      return response.json();
+    })
     .then(data => {
       const tbody = document.getElementById("tabela-alunos-roteiro3noa-body");
       tbody.innerHTML = "";
@@ -32,6 +41,14 @@ function carregarAlunosRoteiro3Noa() {
         `;
         tbody.appendChild(tr);
       });
+
+      loading.style.display = "none";
+      tabela.style.display = "block";
+    })
+    .catch(error => {
+      console.error("Erro ao carregar alunos:", error);
+      alert("Erro ao carregar alunos.");
+      loading.style.display = "none";
     });
 }
 

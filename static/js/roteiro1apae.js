@@ -11,6 +11,13 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function carregarAlunosRoteiro1Apae() {
+  const loading = document.getElementById("loading-roteiro1apae");
+  const tabela = document.querySelector("#ana-rafael .table-card");
+
+  // Mostrar o loading, ocultar a tabela
+  loading.style.display = "block";
+  tabela.style.display = "none";
+
   fetch('/api/alunos_roteiro1apae')
     .then(response => {
       if (!response.ok) throw new Error("Erro ao carregar dados.");
@@ -40,10 +47,15 @@ function carregarAlunosRoteiro1Apae() {
 
         tbody.appendChild(tr);
       });
+
+      // Esconde o loading e mostra a tabela
+      loading.style.display = "none";
+      tabela.style.display = "block";
     })
     .catch(error => {
       console.error("Erro ao carregar alunos:", error);
       alert("Erro ao carregar alunos.");
+      loading.style.display = "none";
     });
 }
 
