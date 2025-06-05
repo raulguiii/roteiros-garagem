@@ -25,11 +25,9 @@ db_config = {
 # Verificação de sessão antes de cada requisição
 @app.before_request
 def verificar_sessao():
-    rotas_livres = ['login', 'static']
-
-    if request.endpoint and any(request.endpoint.startswith(r) for r in rotas_livres):
+    rotas_livres = ['login', 'static', 'teste']
+    if request.endpoint is None or any(request.endpoint.startswith(r) for r in rotas_livres):
         return
-
     if 'nome_completo' not in session:
         flash("Sua sessão expirou. Por favor, faça login novamente.")
         return redirect(url_for('login'))
