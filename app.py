@@ -13,46 +13,49 @@ UPLOAD_FOLDER = 'uploads/atestados'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = os.path.join('static', 'atestados')
 
-# Configuração do banco de dados
+# Configuração do banco de dados com porta correta da Railway
 db_config = {
-    "host": "localhost",
+    "host": "caboose.proxy.rlwy.net",
+    "port": 19070,  # PORTA CORRETA
     "user": "root",
-    "password": "raulgui123!",
-    "database": "db_transporte_adaptado"
+    "password": "LwvHcipVoMGESFrvxxqNjccNJeZPYTsn",
+    "database": "db_transporte_adaptado_semecti"
 }
 
+# Verificação de sessão antes de cada requisição
 @app.before_request
 def verificar_sessao():
-    # Rotas que não precisam de login
-    rotas_livres = ['login', 'static']  # adiciona static pra arquivos estáticos
+    rotas_livres = ['login', 'static']
 
     if request.endpoint and any(request.endpoint.startswith(r) for r in rotas_livres):
-        return  # permite acesso sem sessão
+        return
 
-    # Se não tiver sessão de usuário, redireciona ao login com aviso
     if 'nome_completo' not in session:
         flash("Sua sessão expirou. Por favor, faça login novamente.")
         return redirect(url_for('login'))
 
-# Página de login (rota inicial)
+# Página de login
 @app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         cpf = request.form['cpf']
         senha = request.form['senha']
 
-        # Conexão com o banco
-        conn = mysql.connector.connect(**db_config)
-        cursor = conn.cursor(dictionary=True)
-        query = "SELECT * FROM usuarios WHERE cpf = %s AND senha = %s"
-        cursor.execute(query, (cpf, senha))
-        usuario = cursor.fetchone()
-        cursor.close()
-        conn.close()
+        try:
+            conn = mysql.connector.connect(**db_config)
+            cursor = conn.cursor(dictionary=True)
+            query = "SELECT * FROM usuarios WHERE cpf = %s AND senha = %s"
+            cursor.execute(query, (cpf, senha))
+            usuario = cursor.fetchone()
+            cursor.close()
+            conn.close()
+        except mysql.connector.Error as err:
+            flash(f"Erro de conexão com o banco de dados: {err}")
+            return render_template('login.html', erro=True)
 
         if usuario:
             session.permanent = True
-            session['id_usuario'] = usuario['id']  # <== aqui, salvar o id do usuário logado
+            session['id_usuario'] = usuario['id']
             session['nome_completo'] = usuario['nome_completo']
             session['cargo'] = usuario['cargo']
             session['roteiro'] = usuario['roteiro']
