@@ -19,7 +19,7 @@ db_config = {
     "port": 19070,  # PORTA CORRETA
     "user": "root",
     "password": "LwvHcipVoMGESFrvxxqNjccNJeZPYTsn",
-    "database": "db_transporte_adaptado_semecti"
+    "database": "railway"
 }
 
 @app.before_request
