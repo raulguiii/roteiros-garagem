@@ -22,6 +22,7 @@ db_config = {
     "database": "railway"
 }
 
+
 @app.before_request
 def verificar_sessao():
     # Rotas que não precisam de login
