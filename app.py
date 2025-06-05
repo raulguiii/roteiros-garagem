@@ -774,3 +774,4 @@ def editar_aluno_roteiro3noa():
 if __name__ == '__main__':
     import os
     app.run(debug=os.environ.get('FLASK_DEBUG', False))
+
