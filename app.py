@@ -772,5 +772,3 @@ def editar_aluno_roteiro3noa():
     return jsonify({"status": "aluno_atualizado"}), 200
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
