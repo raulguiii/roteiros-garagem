@@ -7,7 +7,6 @@ from flask import g
 
 app = Flask(__name__)
 app.permanent_session_lifetime = timedelta(hours=1)
-app.secret_key = "chave_secreta"
 
 UPLOAD_FOLDER = 'uploads/atestados'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -15,12 +14,14 @@ app.config['UPLOAD_FOLDER'] = os.path.join('static', 'atestados')
 
 # Configuração do banco de dados com porta correta da Railway
 db_config = {
-    "host": "caboose.proxy.rlwy.net",
-    "port": 19070,  # PORTA CORRETA
-    "user": "root",
-    "password": "LwvHcipVoMGESFrvxxqNjccNJeZPYTsn",
-    "database": "db_transporte_adaptado_semecti"
+    "host": os.getenv("DB_HOST"),
+    "port": int(os.getenv("DB_PORT")),
+    "user": os.getenv("DB_USER"),
+    "password": os.getenv("DB_PASSWORD"),
+    "database": os.getenv("DB_NAME")
 }
+
+app.secret_key = os.getenv("SECRET_KEY")
 
 @app.before_request
 def verificar_sessao():
@@ -771,4 +772,4 @@ def editar_aluno_roteiro3noa():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
