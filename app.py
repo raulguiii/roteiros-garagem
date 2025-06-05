@@ -85,6 +85,7 @@ def logout():
     return redirect(url_for('login'))
 
 
+
 # API que retorna os usuários em JSON (usada pelo AJAX)
 @app.route('/api/usuarios')
 def api_usuarios():
