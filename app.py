@@ -36,36 +36,8 @@ def verificar_sessao():
 
 # Página de login
 @app.route('/', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        cpf = request.form['cpf']
-        senha = request.form['senha']
-
-        try:
-            conn = mysql.connector.connect(**db_config)
-            cursor = conn.cursor(dictionary=True)
-            query = "SELECT * FROM usuarios WHERE cpf = %s AND senha = %s"
-            cursor.execute(query, (cpf, senha))
-            usuario = cursor.fetchone()
-            cursor.close()
-            conn.close()
-        except mysql.connector.Error as err:
-            flash(f"Erro de conexão com o banco de dados: {err}")
-            return render_template('login.html', erro=True)
-
-        if usuario:
-            session.permanent = True
-            session['id_usuario'] = usuario['id']
-            session['nome_completo'] = usuario['nome_completo']
-            session['cargo'] = usuario['cargo']
-            session['roteiro'] = usuario['roteiro']
-            session['destino'] = usuario['destino']
-            return redirect(url_for('index'))
-        else:
-            flash("CPF ou senha incorretos.")
-            return render_template('login.html', erro=True)
-
-    return render_template('login.html')
+def teste():
+    return "Servidor funcionando!"
 
 
 # Página principal após login
