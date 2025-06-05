@@ -4,6 +4,8 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 from datetime import datetime, timedelta
 from werkzeug.utils import secure_filename
 from flask import g
+import logging
+logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__)
 app.permanent_session_lifetime = timedelta(hours=1)
