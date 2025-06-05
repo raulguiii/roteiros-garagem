@@ -22,20 +22,48 @@ db_config = {
     "database": "db_transporte_adaptado_semecti"
 }
 
-# Verificação de sessão antes de cada requisição
 @app.before_request
 def verificar_sessao():
-    rotas_livres = ['login', 'static', 'teste']
-    if request.endpoint is None or any(request.endpoint.startswith(r) for r in rotas_livres):
-        return
+    # Rotas que não precisam de login
+    rotas_livres = ['login', 'static']  # adiciona static pra arquivos estáticos
+
+    if request.endpoint and any(request.endpoint.startswith(r) for r in rotas_livres):
+        return  # permite acesso sem sessão
+
+    # Se não tiver sessão de usuário, redireciona ao login com aviso
     if 'nome_completo' not in session:
         flash("Sua sessão expirou. Por favor, faça login novamente.")
         return redirect(url_for('login'))
 
-# Página de login
+# Página de login (rota inicial)
 @app.route('/', methods=['GET', 'POST'])
-def teste():
-    return "Servidor funcionando!"
+def login():
+    if request.method == 'POST':
+        cpf = request.form['cpf']
+        senha = request.form['senha']
+
+        # Conexão com o banco
+        conn = mysql.connector.connect(**db_config)
+        cursor = conn.cursor(dictionary=True)
+        query = "SELECT * FROM usuarios WHERE cpf = %s AND senha = %s"
+        cursor.execute(query, (cpf, senha))
+        usuario = cursor.fetchone()
+        cursor.close()
+        conn.close()
+
+        if usuario:
+            session.permanent = True
+            session['id_usuario'] = usuario['id']  # <== aqui, salvar o id do usuário logado
+            session['nome_completo'] = usuario['nome_completo']
+            session['cargo'] = usuario['cargo']
+            session['roteiro'] = usuario['roteiro']
+            session['destino'] = usuario['destino']
+            return redirect(url_for('index'))
+        else:
+            flash("CPF ou senha incorretos.")
+            return render_template('login.html', erro=True)
+
+    return render_template('login.html')
 
 
 # Página principal após login
@@ -742,6 +770,5 @@ def editar_aluno_roteiro3noa():
     return jsonify({"status": "aluno_atualizado"}), 200
 
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+if __name__ == '__main__':
+    app.run(debug=True)
