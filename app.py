@@ -25,16 +25,10 @@ db_config = {
 
 @app.before_request
 def verificar_sessao():
-    # Rotas que não precisam de login
-    rotas_livres = ['login', 'static']  # adiciona static pra arquivos estáticos
+    print("Request.endpoint:", request.endpoint)  # debug
+    return  # <=== Temporariamente permite tudo, só para teste
 
-    if request.endpoint and any(request.endpoint.startswith(r) for r in rotas_livres):
-        return  # permite acesso sem sessão
 
-    # Se não tiver sessão de usuário, redireciona ao login com aviso
-    if 'nome_completo' not in session:
-        flash("Sua sessão expirou. Por favor, faça login novamente.")
-        return redirect(url_for('login'))
 
 # Página de login (rota inicial)
 @app.route('/', methods=['GET', 'POST'])
