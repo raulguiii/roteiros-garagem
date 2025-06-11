@@ -9,9 +9,9 @@ app = Flask(__name__)
 app.permanent_session_lifetime = timedelta(hours=1)
 app.secret_key = "chave_secreta"
 
-UPLOAD_FOLDER = os.path.join('static', 'atestados')
+UPLOAD_FOLDER = 'uploads/atestados'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['UPLOAD_FOLDER'] = os.path.join('static', 'atestados')
 
 # Configuração do banco de dados com porta correta da Railway
 db_config = {
@@ -19,23 +19,22 @@ db_config = {
     "port": 19070,  # PORTA CORRETA
     "user": "root",
     "password": "LwvHcipVoMGESFrvxxqNjccNJeZPYTsn",
-    "database": "db_transporte_adaptado_semecti"
+    "database": "railway"
 }
 
 
 @app.before_request
 def verificar_sessao():
-    print("Request.endpoint:", request.endpoint)  # ADICIONE ISTO
-    rotas_livres = ['login', 'static']  # rotas que não precisam de sessão
+    # Rotas que não precisam de login
+    rotas_livres = ['login', 'static']  # adiciona static pra arquivos estáticos
 
     if request.endpoint and any(request.endpoint.startswith(r) for r in rotas_livres):
-        return
+        return  # permite acesso sem sessão
 
+    # Se não tiver sessão de usuário, redireciona ao login com aviso
     if 'nome_completo' not in session:
         flash("Sua sessão expirou. Por favor, faça login novamente.")
         return redirect(url_for('login'))
-
-
 
 # Página de login (rota inicial)
 @app.route('/', methods=['GET', 'POST'])
@@ -774,6 +773,5 @@ def editar_aluno_roteiro3noa():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=False)
-
-
+    import os
+    app.run(debug=os.environ.get('FLASK_DEBUG', False))
