@@ -9,9 +9,9 @@ app = Flask(__name__)
 app.permanent_session_lifetime = timedelta(hours=1)
 app.secret_key = "chave_secreta"
 
-UPLOAD_FOLDER = 'uploads/atestados'
+UPLOAD_FOLDER = os.path.join('static', 'atestados')
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-app.config['UPLOAD_FOLDER'] = os.path.join('static', 'atestados')
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Configuração do banco de dados com porta correta da Railway
 db_config = {
