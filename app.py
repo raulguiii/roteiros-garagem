@@ -19,17 +19,16 @@ db_config = {
     "port": 19070,  # PORTA CORRETA
     "user": "root",
     "password": "LwvHcipVoMGESFrvxxqNjccNJeZPYTsn",
-    "database": "railway"
+    "database": "db_transporte_adaptado_semecti"
 }
 
-
+# Verificação de sessão antes de cada requisição
 @app.before_request
 def verificar_sessao():
-    # Rotas que não precisam de login
-    rotas_livres = ['login', 'static']  # adiciona static pra arquivos estáticos
+    rotas_livres = ['login', 'static']
 
     if request.endpoint and any(request.endpoint.startswith(r) for r in rotas_livres):
-        return  # permite acesso sem sessão
+        return
 
     # Se não tiver sessão de usuário, redireciona ao login com aviso
     if 'nome_completo' not in session:
@@ -43,18 +42,21 @@ def login():
         cpf = request.form['cpf']
         senha = request.form['senha']
 
-        # Conexão com o banco
-        conn = mysql.connector.connect(**db_config)
-        cursor = conn.cursor(dictionary=True)
-        query = "SELECT * FROM usuarios WHERE cpf = %s AND senha = %s"
-        cursor.execute(query, (cpf, senha))
-        usuario = cursor.fetchone()
-        cursor.close()
-        conn.close()
+        try:
+            conn = mysql.connector.connect(**db_config)
+            cursor = conn.cursor(dictionary=True)
+            query = "SELECT * FROM usuarios WHERE cpf = %s AND senha = %s"
+            cursor.execute(query, (cpf, senha))
+            usuario = cursor.fetchone()
+            cursor.close()
+            conn.close()
+        except mysql.connector.Error as err:
+            flash(f"Erro de conexão com o banco de dados: {err}")
+            return render_template('login.html', erro=True)
 
         if usuario:
             session.permanent = True
-            session['id_usuario'] = usuario['id']  # <== aqui, salvar o id do usuário logado
+            session['id_usuario'] = usuario['id']
             session['nome_completo'] = usuario['nome_completo']
             session['cargo'] = usuario['cargo']
             session['roteiro'] = usuario['roteiro']
@@ -772,4 +774,5 @@ def editar_aluno_roteiro3noa():
     return jsonify({"status": "aluno_atualizado"}), 200
 
 
-    
+if __name__ == '__main__':
+    app.run(debug=True)
