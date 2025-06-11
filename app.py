@@ -25,8 +25,15 @@ db_config = {
 
 @app.before_request
 def verificar_sessao():
-    print("Request.endpoint:", request.endpoint)  # debug
-    return  # <=== Temporariamente permite tudo, só para teste
+    print("Request.endpoint:", request.endpoint)  # ADICIONE ISTO
+    rotas_livres = ['login', 'static']  # rotas que não precisam de sessão
+
+    if request.endpoint and any(request.endpoint.startswith(r) for r in rotas_livres):
+        return
+
+    if 'nome_completo' not in session:
+        flash("Sua sessão expirou. Por favor, faça login novamente.")
+        return redirect(url_for('login'))
 
 
 
@@ -767,6 +774,6 @@ def editar_aluno_roteiro3noa():
 
 
 if __name__ == '__main__':
-    import os
-    app.run(debug=os.environ.get('FLASK_DEBUG', False))
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=False)
+
 
